@@ -1,705 +1,694 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Trophy Dark • Character Builder (Manual)</title>
-  <!-- Bulma (pure CSS) -->
-  <!-- Bulma (via CDN) -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Trophy Dark • Character Builder</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
 </head>
-<body class="page">
-  <main class="page-main">
-    <section class="section py-5">
-      <div class="container">
-        <header class="mb-5">
-          <nav class="level">
-            <div class="level-left">
-              <div class="level-item">
-                <h1 class="title is-3">Trophy Dark — Character Builder</h1>
+<body>
+  <section class="section">
+    <div class="container is-max-desktop">
+      <header class="mb-5">
+        <nav class="level">
+          <div class="level-left">
+            <div class="level-item">
+              <h1 class="title is-3">Trophy Dark</h1>
+            </div>
+          </div>
+          <div class="level-right">
+            <div class="level-item">
+              <button type="button" id="btnSaveHash" class="button is-info is-light" title="Save to URL" aria-label="Save to URL">🔗 Save link</button>
+            </div>
+            <div class="level-item">
+              <button type="button" id="btnRandAll" class="button is-primary" title="Randomise everything" aria-label="Randomise everything">🎲 Randomise all</button>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      <div class="box form-card">
+        <form action="#" method="post" novalidate>
+          <fieldset>
+            <div class="columns is-multiline">
+              <div class="column is-12-mobile is-8-desktop">
+                <div class="field">
+                  <label class="label" for="name">Name</label>
+                  <div class="field is-grouped">
+                    <div class="control is-expanded">
+                      <input id="name" name="name" class="input" type="text" maxlength="80">
+                    </div>
+                    <div class="control">
+                      <button type="button" id="btnRandName" class="button" title="Randomise name" aria-label="Randomise name">🎲</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="column is-12-mobile is-4-desktop">
+                <!-- Pronouns (free text) -->
+                <div class="field">
+                  <label class="label" for="pronouns">Pronouns</label>
+                  <div class="field is-grouped">
+                    <div class="control is-expanded">
+                      <input id="pronouns" name="pronouns" class="input" type="text" placeholder="e.g. he/him" maxlength="60" aria-describedby="pronounsHelp">
+                    </div>
+                    <div class="control">
+                      <button type="button" id="btnRandPronouns" class="button" title="Randomise pronouns" aria-label="Randomise pronouns">🎲</button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="level-right">
-              <div class="level-item">
-                <button type="button" id="btnSaveHash" class="button is-info is-light" title="Save to URL" aria-label="Save to URL">🔗 Save link</button>
+
+            <!-- Occupation + Background row -->
+            <div class="columns is-multiline">
+              <div class="column is-12-mobile is-6-desktop">
+                <!-- Occupation (dropdown) -->
+                <div class="field">
+                  <label class="label" for="occupation">Occupation</label>
+                  <div class="field is-grouped">
+                    <div class="select">
+                      <select id="occupation" name="occupation" aria-describedby="occupationHelp">
+                        <option value="">— Choose an occupation —</option>
+                        <option value="Antiquarian" data-skills="artifacts,myths,obfuscation">Antiquarian</option>
+                        <option value="Artificer" data-skills="alchemy,invention,traps">Artificer</option>
+                        <option value="Astrologer" data-skills="darkness,stars,symbols">Astrologer</option>
+                        <option value="Blacksmith" data-skills="endurance,metal,weapons">Blacksmith</option>
+                        <option value="Bodyguard" data-skills="protection,speed,vigilance">Bodyguard</option>
+                        <option value="Chain" data-skills="commands,elements,rituals">Chain</option>
+                        <option value="Champion" data-skills="commands,ferocity,presence">Champion</option>
+                        <option value="Cook" data-skills="food,improvisation,poisons">Cook</option>
+                        <option value="Demonologist" data-skills="demons,negotiation,trickery">Demonologist</option>
+                        <option value="Geomancer" data-skills="construction,paths,patterns">Geomancer</option>
+                        <option value="Guide" data-skills="foraging,hunting,paths">Guide</option>
+                        <option value="Hedge" data-skills="improvisation,rituals,spirits">Hedge</option>
+                        <option value="Herbalist" data-skills="perception,plants,remedies">Herbalist</option>
+                        <option value="Intercessor" data-skills="charm,persistence,rituals">Intercessor</option>
+                        <option value="Lamb" data-skills="innocence,sacrifice,rituals">Lamb</option>
+                        <option value="Lancer" data-skills="balance,coordination,precision">Lancer</option>
+                        <option value="Leech" data-skills="blood,deduction,surgery">Leech</option>
+                        <option value="Lockpick" data-skills="acrobatics,security,silence">Lockpick</option>
+                        <option value="Magician" data-skills="performance,rituals,trickery">Magician</option>
+                        <option value="Medium" data-skills="spirits,vigilance,willpower">Medium</option>
+                        <option value="Merchant" data-skills="bribery,focus,persuasion">Merchant</option>
+                        <option value="Naturalist" data-skills="beasts,plants,silence">Naturalist</option>
+                        <option value="Nest" data-skills="coordination,rituals,vermin">Nest</option>
+                        <option value="Oracle" data-skills="interpretation,rituals,trances">Oracle</option>
+                        <option value="Ox" data-skills="destruction,persistence,strength">Ox</option>
+                        <option value="Poet" data-skills="passion,persuasion,rituals">Poet</option>
+                        <option value="Ranger" data-skills="beasts,hunting,traps">Ranger</option>
+                        <option value="Sellsword" data-skills="athletics,defense,surprise">Sellsword</option>
+                        <option value="Smuggler" data-skills="dexterity,spontaneity,stealth">Smuggler</option>
+                        <option value="Snake" data-skills="charm,trickery,performance">Snake</option>
+                        <option value="Sorcerer" data-skills="alchemy,rituals,symbols">Sorcerer</option>
+                        <option value="Spider" data-skills="surprise,traps,vermin">Spider</option>
+                        <option value="Vessel" data-skills="attraction,rituals,surrender">Vessel</option>
+                        <option value="Witch" data-skills="homes,plants,rituals">Witch</option>
+                        <option value="Woodcutter" data-skills="beasts,strength,trails">Woodcutter</option>
+                        <option value="Zealot" data-skills="interrogation,rituals,strength">Zealot</option>
+                      </select>
+                    </div>
+                    <div class="control">
+                      <button type="button" id="btnRandOccupation" class="button" title="Randomise occupation" aria-label="Randomise occupation">🎲</button>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="level-item">
-                <button type="button" id="btnRandAll" class="button is-primary" title="Randomise everything" aria-label="Randomise everything">🎲 Randomise all</button>
+              <div class="column is-12-mobile is-6-desktop">
+                <!-- Background (dropdown) -->
+                <div class="field">
+                  <label class="label" for="background">Background</label>
+                  <div class="field is-grouped">
+                    <div class="select">
+                      <select id="background" name="background" aria-describedby="backgroundHelp">
+                        <option value="">— Choose a background —</option>
+                        <option value="Abandoned Squire" data-skill="aiding">Abandoned Squire</option>
+                        <option value="Banished Dancer" data-skill="grace">Banished Dancer</option>
+                        <option value="Cured Beastbitten" data-skill="transformation">Cured Beastbitten</option>
+                        <option value="Defrocked Priest" data-skill="omens">Defrocked Priest</option>
+                        <option value="Devoted Widow" data-skill="patience">Devoted Widow</option>
+                        <option value="Disgraced Courtesan" data-skill="flattery">Disgraced Courtesan</option>
+                        <option value="Disinherited Noble" data-skill="appraisal">Disinherited Noble</option>
+                        <option value="Emboldened Ratcatcher" data-skill="lairs">Emboldened Ratcatcher</option>
+                        <option value="Enlightened Miner" data-skill="paths">Enlightened Miner</option>
+                        <option value="Errant Knight" data-skill="dueling">Errant Knight</option>
+                        <option value="Escaped Cultist" data-skill="deception">Escaped Cultist</option>
+                        <option value="Expelled Apprentice" data-skill="lore">Expelled Apprentice</option>
+                        <option value="Failed Pilgrim" data-skill="saints">Failed Pilgrim</option>
+                        <option value="Flockless Shepherd" data-skill="soothing">Flockless Shepherd</option>
+                        <option value="Grounded Sailor" data-skill="ropes">Grounded Sailor</option>
+                        <option value="Hapless Peddler" data-skill="trading">Hapless Peddler</option>
+                        <option value="Heretical Inquisitor" data-skill="secrets">Heretical Inquisitor</option>
+                        <option value="Impeached Official" data-skill="lies">Impeached Official</option>
+                        <option value="Imprecise Barber" data-skill="injury">Imprecise Barber</option>
+                        <option value="Injured Whaler" data-skill="hunting">Injured Whaler</option>
+                        <option value="Liberated Prisoner" data-skill="deals">Liberated Prisoner</option>
+                        <option value="Lost Child" data-skill="hiding">Lost Child</option>
+                        <option value="Lured Innocent" data-skill="temptation">Lured Innocent</option>
+                        <option value="Opportunistic Graverobber" data-skill="death">Opportunistic Graverobber</option>
+                        <option value="Oppressed Laborer" data-skill="rebellion">Oppressed Laborer</option>
+                        <option value="Orphaned Manikin" data-skill="mimicry">Orphaned Manikin</option>
+                        <option value="Plagued Farmer" data-skill="corruption">Plagued Farmer</option>
+                        <option value="Reckless Moneylender" data-skill="ambition">Reckless Moneylender</option>
+                        <option value="Reformed Thug" data-skill="intimidation">Reformed Thug</option>
+                        <option value="Retired Soldier" data-skill="tactics">Retired Soldier</option>
+                        <option value="Runaway Kingsguard" data-skill="tracking">Runaway Kingsguard</option>
+                        <option value="Traitorous Cupbearer" data-skill="betrayal">Traitorous Cupbearer</option>
+                        <option value="Uninspired Artisan" data-skill="crafting">Uninspired Artisan</option>
+                        <option value="Unmasked Faeborn" data-skill="illusions">Unmasked Faeborn</option>
+                        <option value="Usurped Royal" data-skill="commands">Usurped Royal</option>
+                        <option value="Wandering Refugee" data-skill="disguise">Wandering Refugee</option>
+                      </select>
+                    </div>
+                    <div class="control">
+                      <button type="button" id="btnRandBackground" class="button" title="Randomise background" aria-label="Randomise background">🎲</button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </nav>
-        </header>
 
-        <div class="box form-card">
-          <form action="#" method="post" novalidate>
-            <fieldset>
-              <legend class="title is-5 mb-4">Character Details</legend>
-              <!-- Name + Pronouns row -->
-              <div class="columns is-multiline">
-                <div class="column is-12-mobile is-8-desktop">
-                  <!-- Name -->
-                  <div class="field">
-                    <label class="label" for="name">Name</label>
-                    <div class="field is-grouped">
-                      <div class="control is-expanded">
-                        <input id="name" name="name" class="input" type="text" placeholder="e.g. Caldas the Wary" maxlength="80">
-                      </div>
-                      <div class="control">
-                        <button type="button" id="btnRandName" class="button" title="Randomise name" aria-label="Randomise name">🎲</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="column is-12-mobile is-4-desktop">
-                  <!-- Pronouns (free text) -->
-                  <div class="field">
-                    <label class="label" for="pronouns">Pronouns</label>
-                    <div class="field is-grouped">
-                      <div class="control is-expanded">
-                        <input id="pronouns" name="pronouns" class="input" type="text" placeholder="e.g. they/them • she/they • xe/xem" maxlength="60" aria-describedby="pronounsHelp">
-                      </div>
-                      <div class="control">
-                        <button type="button" id="btnRandPronouns" class="button" title="Randomise pronouns" aria-label="Randomise pronouns">🎲</button>
-                      </div>
-                    </div>
-                    <p id="pronounsHelp" class="help is-muted">Free text — use any pronouns or description that suits.</p>
-                  </div>
-                </div>
+            <!-- Skills (auto) -->
+            <div class="field">
+              <label class="label" for="skills-list">Skills</label>
+              <div id="skills-list" class="tags" aria-live="polite" aria-atomic="true">
+                <span class="tag is-light">—</span>
               </div>
+            </div>
 
-              <!-- Occupation + Background row -->
-              <div class="columns is-multiline">
-                <div class="column is-12-mobile is-6-desktop">
-                  <!-- Occupation (dropdown) -->
-                  <div class="field">
-                    <label class="label" for="occupation">Occupation</label>
-                    <div class="field is-grouped">
-                      <div class="select">
-                        <select id="occupation" name="occupation" aria-describedby="occupationHelp">
-                          <option value="">— Choose an occupation —</option>
-                          <option value="Antiquarian" data-skills="artifacts,myths,obfuscation">Antiquarian</option>
-                          <option value="Artificer" data-skills="alchemy,invention,traps">Artificer</option>
-                          <option value="Astrologer" data-skills="darkness,stars,symbols">Astrologer</option>
-                          <option value="Blacksmith" data-skills="endurance,metal,weapons">Blacksmith</option>
-                          <option value="Bodyguard" data-skills="protection,speed,vigilance">Bodyguard</option>
-                          <option value="Chain" data-skills="commands,elements,rituals">Chain</option>
-                          <option value="Champion" data-skills="commands,ferocity,presence">Champion</option>
-                          <option value="Cook" data-skills="food,improvisation,poisons">Cook</option>
-                          <option value="Demonologist" data-skills="demons,negotiation,trickery">Demonologist</option>
-                          <option value="Geomancer" data-skills="construction,paths,patterns">Geomancer</option>
-                          <option value="Guide" data-skills="foraging,hunting,paths">Guide</option>
-                          <option value="Hedge" data-skills="improvisation,rituals,spirits">Hedge</option>
-                          <option value="Herbalist" data-skills="perception,plants,remedies">Herbalist</option>
-                          <option value="Intercessor" data-skills="charm,persistence,rituals">Intercessor</option>
-                          <option value="Lamb" data-skills="innocence,sacrifice,rituals">Lamb</option>
-                          <option value="Lancer" data-skills="balance,coordination,precision">Lancer</option>
-                          <option value="Leech" data-skills="blood,deduction,surgery">Leech</option>
-                          <option value="Lockpick" data-skills="acrobatics,security,silence">Lockpick</option>
-                          <option value="Magician" data-skills="performance,rituals,trickery">Magician</option>
-                          <option value="Medium" data-skills="spirits,vigilance,willpower">Medium</option>
-                          <option value="Merchant" data-skills="bribery,focus,persuasion">Merchant</option>
-                          <option value="Naturalist" data-skills="beasts,plants,silence">Naturalist</option>
-                          <option value="Nest" data-skills="coordination,rituals,vermin">Nest</option>
-                          <option value="Oracle" data-skills="interpretation,rituals,trances">Oracle</option>
-                          <option value="Ox" data-skills="destruction,persistence,strength">Ox</option>
-                          <option value="Poet" data-skills="passion,persuasion,rituals">Poet</option>
-                          <option value="Ranger" data-skills="beasts,hunting,traps">Ranger</option>
-                          <option value="Sellsword" data-skills="athletics,defense,surprise">Sellsword</option>
-                          <option value="Smuggler" data-skills="dexterity,spontaneity,stealth">Smuggler</option>
-                          <option value="Snake" data-skills="charm,trickery,performance">Snake</option>
-                          <option value="Sorcerer" data-skills="alchemy,rituals,symbols">Sorcerer</option>
-                          <option value="Spider" data-skills="surprise,traps,vermin">Spider</option>
-                          <option value="Vessel" data-skills="attraction,rituals,surrender">Vessel</option>
-                          <option value="Witch" data-skills="homes,plants,rituals">Witch</option>
-                          <option value="Woodcutter" data-skills="beasts,strength,trails">Woodcutter</option>
-                          <option value="Zealot" data-skills="interrogation,rituals,strength">Zealot</option>
-                        </select>
-                      </div>
-                      <div class="control">
-                        <button type="button" id="btnRandOccupation" class="button" title="Randomise occupation" aria-label="Randomise occupation">🎲</button>
-                      </div>
-                    </div>
-                    <p id="occupationHelp" class="help is-muted">Selecting an occupation will display its three skills below.</p>
-                  </div>
+            <!-- Drive (dropdown) -->
+            <div class="field">
+              <label class="label" for="drive">Drive</label>
+              <div class="field is-grouped">
+                <div class="select">
+                  <select id="drive" name="drive" aria-describedby="driveHelp">
+                    <option value="">— Choose a drive —</option>
+                    <option>Acquire the Gleaming Cache before it is too late</option>
+                    <option>Arm the resistance against Lord Haffir&#39;s tyranny</option>
+                    <option>Attend Countess Shima&#39;s Forbidden Festival</option>
+                    <option>Become part of the Swirling Court</option>
+                    <option>Become the only patron of Ansem the Wistful</option>
+                    <option>Break the geas placed by the Witch of Nevask</option>
+                    <option>Break the siege on your sibling&#39;s fortress</option>
+                    <option>Bribe the justiciars so they erase your crimes</option>
+                    <option>Bring freedom to Tirollis</option>
+                    <option>Buy the orphanage where you were mistreated</option>
+                    <option>Buy your brother&#39;s freedom from Barsul Prison</option>
+                    <option>Commission a glorious statue of your deity</option>
+                    <option>Destroy the work of Ajino the Debauched Painter</option>
+                    <option>Earn the respect of the Governor of Fort Duhrin</option>
+                    <option>Earn the right to your family&#39;s name</option>
+                    <option>Establish an estate in the Levasti countryside</option>
+                    <option>Finance an expedition into the Blossoming Sea</option>
+                    <option>Find the artifact that proves the king&#39;s true nature</option>
+                    <option>Find the resting ground of the Morning Knight</option>
+                    <option>Free the kindly followers of the Piper</option>
+                    <option>Give your betrothed the present they crave</option>
+                    <option>Inscribe your mother&#39;s name in the Azure Archives</option>
+                    <option>Locate the jewel that haunts Eriol&#39;s dreams</option>
+                    <option>Pay the toll of the Emerald Bridge</option>
+                    <option>Pay your father&#39;s debt to Bright-Teeth Assyrio</option>
+                    <option>Publish your discoveries from ancient Kalduhr</option>
+                    <option>Rebuild Hisham&#39;s Fountain</option>
+                    <option>Repay your losses to the Southern Pass Company</option>
+                    <option>Restore the lost glory of the Caliginous Grove</option>
+                    <option>Restore the Temple of Tanahlot</option>
+                    <option>Resurrect the Cult of Derawan</option>
+                    <option>Retire in comfort in the Rose District of Ambaret</option>
+                    <option>Retrieve the lost banner of the Nameless Legion</option>
+                    <option>Seize absolute control of Kormoran&#39;s Wheel</option>
+                    <option>Take Cyrus&#39;s place at the Earthen Council</option>
+                    <option>Win the heart of the heir apparent of Naganeh</option>
+                  </select>
                 </div>
-                <div class="column is-12-mobile is-6-desktop">
-                  <!-- Background (dropdown) -->
-                  <div class="field">
-                    <label class="label" for="background">Background</label>
-                    <div class="field is-grouped">
-                      <div class="select">
-                        <select id="background" name="background" aria-describedby="backgroundHelp">
-                          <option value="">— Choose a background —</option>
-                          <option value="Abandoned Squire" data-skill="aiding">Abandoned Squire</option>
-                          <option value="Banished Dancer" data-skill="grace">Banished Dancer</option>
-                          <option value="Cured Beastbitten" data-skill="transformation">Cured Beastbitten</option>
-                          <option value="Defrocked Priest" data-skill="omens">Defrocked Priest</option>
-                          <option value="Devoted Widow" data-skill="patience">Devoted Widow</option>
-                          <option value="Disgraced Courtesan" data-skill="flattery">Disgraced Courtesan</option>
-                          <option value="Disinherited Noble" data-skill="appraisal">Disinherited Noble</option>
-                          <option value="Emboldened Ratcatcher" data-skill="lairs">Emboldened Ratcatcher</option>
-                          <option value="Enlightened Miner" data-skill="paths">Enlightened Miner</option>
-                          <option value="Errant Knight" data-skill="dueling">Errant Knight</option>
-                          <option value="Escaped Cultist" data-skill="deception">Escaped Cultist</option>
-                          <option value="Expelled Apprentice" data-skill="lore">Expelled Apprentice</option>
-                          <option value="Failed Pilgrim" data-skill="saints">Failed Pilgrim</option>
-                          <option value="Flockless Shepherd" data-skill="soothing">Flockless Shepherd</option>
-                          <option value="Grounded Sailor" data-skill="ropes">Grounded Sailor</option>
-                          <option value="Hapless Peddler" data-skill="trading">Hapless Peddler</option>
-                          <option value="Heretical Inquisitor" data-skill="secrets">Heretical Inquisitor</option>
-                          <option value="Impeached Official" data-skill="lies">Impeached Official</option>
-                          <option value="Imprecise Barber" data-skill="injury">Imprecise Barber</option>
-                          <option value="Injured Whaler" data-skill="hunting">Injured Whaler</option>
-                          <option value="Liberated Prisoner" data-skill="deals">Liberated Prisoner</option>
-                          <option value="Lost Child" data-skill="hiding">Lost Child</option>
-                          <option value="Lured Innocent" data-skill="temptation">Lured Innocent</option>
-                          <option value="Opportunistic Graverobber" data-skill="death">Opportunistic Graverobber</option>
-                          <option value="Oppressed Laborer" data-skill="rebellion">Oppressed Laborer</option>
-                          <option value="Orphaned Manikin" data-skill="mimicry">Orphaned Manikin</option>
-                          <option value="Plagued Farmer" data-skill="corruption">Plagued Farmer</option>
-                          <option value="Reckless Moneylender" data-skill="ambition">Reckless Moneylender</option>
-                          <option value="Reformed Thug" data-skill="intimidation">Reformed Thug</option>
-                          <option value="Retired Soldier" data-skill="tactics">Retired Soldier</option>
-                          <option value="Runaway Kingsguard" data-skill="tracking">Runaway Kingsguard</option>
-                          <option value="Traitorous Cupbearer" data-skill="betrayal">Traitorous Cupbearer</option>
-                          <option value="Uninspired Artisan" data-skill="crafting">Uninspired Artisan</option>
-                          <option value="Unmasked Faeborn" data-skill="illusions">Unmasked Faeborn</option>
-                          <option value="Usurped Royal" data-skill="commands">Usurped Royal</option>
-                          <option value="Wandering Refugee" data-skill="disguise">Wandering Refugee</option>
-                        </select>
-                      </div>
-                      <div class="control">
-                        <button type="button" id="btnRandBackground" class="button" title="Randomise background" aria-label="Randomise background">🎲</button>
-                      </div>
-                    </div>
-                    <p id="backgroundHelp" class="help is-muted">Adds its skill to the list below.</p>
-                  </div>
+                <div class="control">
+                  <button type="button" id="btnRandDrive" class="button" title="Randomise drive" aria-label="Randomise drive">🎲</button>
                 </div>
               </div>
+            </div>
 
-              <!-- Skills (auto) -->
-              <div class="field">
-                <label class="label" for="skills-list">Skills</label>
-                <div id="skills-list" class="tags" aria-live="polite" aria-atomic="true">
-                  <span class="tag is-light">—</span>
-                </div>
-              </div>
+            <!-- Rituals (dynamic rows) -->
+            <div class="field" id="ritualsField">
+              <label class="label" for="rituals">Rituals</label>
 
-              <!-- Drive (dropdown) -->
-              <div class="field">
-                <label class="label" for="drive">Drive</label>
-                <div class="field is-grouped">
-                  <div class="select">
-                    <select id="drive" name="drive" aria-describedby="driveHelp">
-                      <option value="">— Choose a drive —</option>
-                      <option>Acquire the Gleaming Cache before it is too late</option>
-                      <option>Arm the resistance against Lord Haffir&#39;s tyranny</option>
-                      <option>Attend Countess Shima&#39;s Forbidden Festival</option>
-                      <option>Become part of the Swirling Court</option>
-                      <option>Become the only patron of Ansem the Wistful</option>
-                      <option>Break the geas placed by the Witch of Nevask</option>
-                      <option>Break the siege on your sibling&#39;s fortress</option>
-                      <option>Bribe the justiciars so they erase your crimes</option>
-                      <option>Bring freedom to Tirollis</option>
-                      <option>Buy the orphanage where you were mistreated</option>
-                      <option>Buy your brother&#39;s freedom from Barsul Prison</option>
-                      <option>Commission a glorious statue of your deity</option>
-                      <option>Destroy the work of Ajino the Debauched Painter</option>
-                      <option>Earn the respect of the Governor of Fort Duhrin</option>
-                      <option>Earn the right to your family&#39;s name</option>
-                      <option>Establish an estate in the Levasti countryside</option>
-                      <option>Finance an expedition into the Blossoming Sea</option>
-                      <option>Find the artifact that proves the king&#39;s true nature</option>
-                      <option>Find the resting ground of the Morning Knight</option>
-                      <option>Free the kindly followers of the Piper</option>
-                      <option>Give your betrothed the present they crave</option>
-                      <option>Inscribe your mother&#39;s name in the Azure Archives</option>
-                      <option>Locate the jewel that haunts Eriol&#39;s dreams</option>
-                      <option>Pay the toll of the Emerald Bridge</option>
-                      <option>Pay your father&#39;s debt to Bright-Teeth Assyrio</option>
-                      <option>Publish your discoveries from ancient Kalduhr</option>
-                      <option>Rebuild Hisham&#39;s Fountain</option>
-                      <option>Repay your losses to the Southern Pass Company</option>
-                      <option>Restore the lost glory of the Caliginous Grove</option>
-                      <option>Restore the Temple of Tanahlot</option>
-                      <option>Resurrect the Cult of Derawan</option>
-                      <option>Retire in comfort in the Rose District of Ambaret</option>
-                      <option>Retrieve the lost banner of the Nameless Legion</option>
-                      <option>Seize absolute control of Kormoran&#39;s Wheel</option>
-                      <option>Take Cyrus&#39;s place at the Earthen Council</option>
-                      <option>Win the heart of the heir apparent of Naganeh</option>
-                    </select>
-                  </div>
-                  <div class="control">
-                    <button type="button" id="btnRandDrive" class="button" title="Randomise drive" aria-label="Randomise drive">🎲</button>
-                  </div>
-                </div>
-                <p id="driveHelp" class="help is-muted">Fixed list; drives don&#39;t add a skill.</p>
-              </div>
+              <!-- Container for up to 3 ritual rows -->
+              <div id="rituals-rows"></div>
 
-              <!-- Rituals (dynamic rows) -->
-              <div class="field" id="ritualsField">
-                <label class="label" for="rituals">Rituals</label>
+              <a href="#" id="ritualsAddLink" class="button add-link">Add ritual</a>
 
-                <!-- Container for up to 3 ritual rows -->
-                <div id="rituals-rows"></div>
+              <!-- Hidden master select used to clone options -->
+              <select id="ritualsMaster" aria-hidden="true" style="display:none">
+                <option value="">— Choose a ritual —</option>
+                <option value="Army">Army &mdash; create illusory copies of yourself that mimic your actions</option>
+                <option value="Ashes">Ashes &mdash; burn something irreplaceable to turn a creature or object to dust</option>
+                <option value="Aura">Aura &mdash; ascertain a creature&#39;s emotional state, truthfulness, and true form</option>
+                <option value="Beacon">Beacon &mdash; nearby hidden creatures or objects shine with a fiery glow</option>
+                <option value="Beast">Beast &mdash; take a form halfway between human and animal</option>
+                <option value="Bewitch">Bewitch &mdash; a creature will follow a simple command if given a gift</option>
+                <option value="Bind">Bind &mdash; hold a creature in place for as long as you stay motionless</option>
+                <option value="Blink">Blink &mdash; a creature you touch teleports to a spot you can see</option>
+                <option value="Blur">Blur &mdash; touch a creature to blur their form, making their details and boundaries hard to determine</option>
+                <option value="Bolt">Bolt &mdash; throw a crackling arc of heat and energy</option>
+                <option value="Bottle">Bottle &mdash; force a spirit into an object</option>
+                <option value="Brimstone">Brimstone &mdash; grow scorching hot to the touch</option>
+                <option value="Burrow">Burrow &mdash; move through the ground</option>
+                <option value="Carve">Carve &mdash; alter a creature or object via sorcerous subtraction</option>
+                <option value="Channel">Channel &mdash; allow a spirit to act through you</option>
+                <option value="Circle">Circle &mdash; a creature within a ring of salt cannot inflict or suffer violence</option>
+                <option value="Clay">Clay &mdash; use your hands to rearrange and reshape inanimate material</option>
+                <option value="Clock">Clock &mdash; time in a small area moves at an unnaturally fast or slow speed</option>
+                <option value="Compel">Compel &mdash; force a creature to perform a non-lethal task, or free a creature from a prior Compel</option>
+                <option value="Crucible">Crucible &mdash; heat a metallic object to melting</option>
+                <option value="Darkness">Darkness &mdash; a living shadow snuffs out all nearby light</option>
+                <option value="Dazzle">Dazzle &mdash; distract and confuse nearby creatures with colorful moving lights</option>
+                <option value="Doom">Doom &mdash; make a creature feel a sense of impending doom</option>
+                <option value="Door">Door &mdash; draw a door on a solid barrier to create a portal through it</option>
+                <option value="Drain">Drain &mdash; remove all water from a creature</option>
+                <option value="Dryad">Dryad &mdash; stay still to transform into a tree and communicate with other trees</option>
+                <option value="Elegy">Elegy &mdash; appear as deceased</option>
+                <option value="Emote">Emote &mdash; heighten or dampen the current emotions of all in your presence</option>
+                <option value="Endure">Endure &mdash; touch a creature to allow them to withstand temperature extremes</option>
+                <option value="Enliven">Enliven &mdash; give flesh and breath to an effigy</option>
+                <option value="Entangle">Entangle &mdash; cause plants to twist and grasp, holding or slowing a creature</option>
+                <option value="Ether">Ether &mdash; a touched creature or object becomes spectral and intangible</option>
+                <option value="Fantasy">Fantasy &mdash; observe and alter the dreams of a known creature</option>
+                <option value="Fault">Fault &mdash; strike the weakest point of an object with phantasmal force</option>
+                <option value="Feather">Feather &mdash; reduce the density of an object</option>
+                <option value="Feral">Feral &mdash; increase the size, temper, and monstrosity of a creature you touch</option>
+                <option value="Float">Float &mdash; hold your breath to gently levitate</option>
+                <option value="Flow">Flow &mdash; shape and command bodies of water</option>
+                <option value="Fountain">Fountain &mdash; a forceful spring of water bursts forth from a location you touch</option>
+                <option value="Future">Future &mdash; an object disappears, then reappears a short time later in exactly the same spot</option>
+                <option value="Gale">Gale &mdash; conjure and guide a mighty wind</option>
+                <option value="Gardener">Gardener &mdash; consume a plant to absorb some of its memories</option>
+                <option value="Germinate">Germinate &mdash; compel plants to furious growth</option>
+                <option value="Ghoul">Ghoul &mdash; animate a dead body</option>
+                <option value="Glamour">Glamour &mdash; appear more charming and attractive</option>
+                <option value="Gleam">Gleam &mdash; a luminous spirit is bound to an object to project light</option>
+                <option value="Guide">Guide &mdash; conjure a thread to follow</option>
+                <option value="Hand">Hand &mdash; concentrate to mentally move a small object you can see</option>
+                <option value="Haunt">Haunt &mdash; summon a spirit to torment a creature</option>
+                <option value="Hold">Hold &mdash; a sigil prevents passage through a space for a short time</option>
+                <option value="Hollow">Hollow &mdash; push a spirit from a body</option>
+                <option value="Hospitality">Hospitality &mdash; maintain peace while you share food and drink</option>
+                <option value="Immolate">Immolate &mdash; engulf your body in flame</option>
+                <option value="Inhabit">Inhabit &mdash; possess a creature</option>
+                <option value="Inscribe">Inscribe &mdash; create or alter a written or carved message</option>
+                <option value="Kindle">Kindle &mdash; produce fire from yourself</option>
+                <option value="Knock">Knock &mdash; open nearby portal that is shut</option>
+                <option value="Leviathan">Leviathan &mdash; draw forth a creature of the deep</option>
+                <option value="Liar">Liar &mdash; contact a spirit who can answer any question, but only falsely</option>
+                <option value="Lift">Lift &mdash; temporarily reverse gravity in a small area</option>
+                <option value="Martyr">Martyr &mdash; touch a creature to transfer their Conditions to you</option>
+                <option value="Mask">Mask &mdash; cover your face to remove yourself from others&#39; senses</option>
+                <option value="Maze">Maze &mdash; the surrounding environment warps into a labyrinth with you at the center</option>
+                <option value="Medium">Medium &mdash; surface thoughts of nearby creatures enter and overwhelm a target</option>
+                <option value="Messenger">Messenger &mdash; send a message via a creature</option>
+                <option value="Mirage">Mirage &mdash; create an illusion that is obviously fake only on close inspection</option>
+                <option value="Mirror">Mirror &mdash; take on the form of a known creature</option>
+                <option value="Nightwalk">Nightwalk &mdash; move untraceably through darkness</option>
+                <option value="Numb">Numb &mdash; reduce sensation within a creature</option>
+                <option value="Obscure">Obscure &mdash; hide a creature or object from the view of one other creature</option>
+                <option value="Orchard">Orchard &mdash; conjure a few dozen apples, some poisonous</option>
+                <option value="Parse">Parse &mdash; divine the meaning of any word, writing, sound, sign, or symbol</option>
+                <option value="Provoke">Provoke &mdash; force an opponent to make a choice: freeze, fight, or flee</option>
+                <option value="Rebirth">Rebirth &mdash; force a known spirit to be reborn in a new body</option>
+                <option value="Repel">Repel &mdash; push away a creature with spiritual force</option>
+                <option value="Rewind">Rewind &mdash; slightly push a creature back in time</option>
+                <option value="Rubber">Rubber &mdash; the body of a touched creature becomes elastic and can stretch beyond normal limits</option>
+                <option value="Rustle">Rustle &mdash; an illusory sound of your choosing appears to come from somewhere nearby</option>
+                <option value="Scale">Scale &mdash; double or halve the size of an object you touch</option>
+                <option value="Scent">Scent &mdash; navigate a space by smell alone, or follow the scent trail of a known creature</option>
+                <option value="Scramble">Scramble &mdash; touch a creature to make them forget their known rituals until the next sunrise</option>
+                <option value="Scry">Scry &mdash; observe a location in spirit form</option>
+                <option value="Sever">Sever &mdash; you can detach and reattach a body part, and still control it while removed</option>
+                <option value="Shell">Shell &mdash; your skin grows a tough outer layer which acts as armor</option>
+                <option value="Shroud">Shroud &mdash; as long as they remain motionless, a group of creatures are hidden from others&#39; senses</option>
+                <option value="Silence">Silence &mdash; deafen all nearby for a short amount of time</option>
+                <option value="Siphon">Siphon &mdash; detect and extract poison from food, water, or a creature</option>
+                <option value="Sleep">Sleep &mdash; send a creature into a deep slumber</option>
+                <option value="Smite">Smite &mdash; strike with a spiritual weapon</option>
+                <option value="Spark">Spark &mdash; touch to revive a newly dead creature, a second touch—even accidental—kills instantly</option>
+                <option value="Statue">Statue &mdash; touch a creature, object, or surface to turn it to stone</option>
+                <option value="Steed">Steed &mdash; summon a spectral mount which can walk on air and water</option>
+                <option value="Summon">Summon &mdash; draw a known creature to you</option>
+                <option value="Swarm">Swarm &mdash; trade favors with a colony of vermin</option>
+                <option value="Switch">Switch &mdash; touch to swap bodies with another</option>
+                <option value="Tadpole">Tadpole &mdash; keep your own mouth closed to allow a creature to breathe, regardless of environment</option>
+                <option value="Tripwire">Tripwire &mdash; a predefined illusory scene is triggered by an event of your choosing</option>
+                <option value="Unravel">Unravel &mdash; pull the threads of a Ritual to uncast it, and recast it somewhere else</option>
+                <option value="Vapor">Vapor &mdash; a noxious cloud fills a small area</option>
+                <option value="Voice">Voice &mdash; alter your voice or make it come from somewhere nearby</option>
+                <option value="Void">Void &mdash; remain silent to prevent the casting of any Ritual in your presence</option>
+                <option value="Wail">Wail &mdash; produce a disorienting sound</option>
+                <option value="Wall">Wall &mdash; create a dense wall of fire, ice, stone, thorns, or water</option>
+                <option value="Ward">Ward &mdash; stay concentrating to protect a small area</option>
+                <option value="Web">Web &mdash; produce webbing to cover a creature or reach something nearby</option>
+                <option value="Wither">Wither &mdash; reduce plants to ash and rot</option>
+                <option value="Writhe">Writhe &mdash; transform sticks and branches into serpents which follow your command</option>
+                <option value="Yoke">Yoke &mdash; apply the strength of a spectral bull to a situation</option>
+              </select>
+            </div>
 
-                <p id="ritualsHelp" class="help is-muted">Format: <em>Name &mdash; description</em>. Up to 3 rituals.</p>
-                <p class="help"><a href="#" id="ritualsAddLink" class="add-link">+ Add new ritual</a></p>
-
-                <!-- Hidden master select used to clone options -->
-                <select id="ritualsMaster" aria-hidden="true" style="display:none">
-                  <option value="">— Choose a ritual —</option>
-                  <option value="Army">Army &mdash; create illusory copies of yourself that mimic your actions</option>
-                  <option value="Ashes">Ashes &mdash; burn something irreplaceable to turn a creature or object to dust</option>
-                  <option value="Aura">Aura &mdash; ascertain a creature&#39;s emotional state, truthfulness, and true form</option>
-                  <option value="Beacon">Beacon &mdash; nearby hidden creatures or objects shine with a fiery glow</option>
-                  <option value="Beast">Beast &mdash; take a form halfway between human and animal</option>
-                  <option value="Bewitch">Bewitch &mdash; a creature will follow a simple command if given a gift</option>
-                  <option value="Bind">Bind &mdash; hold a creature in place for as long as you stay motionless</option>
-                  <option value="Blink">Blink &mdash; a creature you touch teleports to a spot you can see</option>
-                  <option value="Blur">Blur &mdash; touch a creature to blur their form, making their details and boundaries hard to determine</option>
-                  <option value="Bolt">Bolt &mdash; throw a crackling arc of heat and energy</option>
-                  <option value="Bottle">Bottle &mdash; force a spirit into an object</option>
-                  <option value="Brimstone">Brimstone &mdash; grow scorching hot to the touch</option>
-                  <option value="Burrow">Burrow &mdash; move through the ground</option>
-                  <option value="Carve">Carve &mdash; alter a creature or object via sorcerous subtraction</option>
-                  <option value="Channel">Channel &mdash; allow a spirit to act through you</option>
-                  <option value="Circle">Circle &mdash; a creature within a ring of salt cannot inflict or suffer violence</option>
-                  <option value="Clay">Clay &mdash; use your hands to rearrange and reshape inanimate material</option>
-                  <option value="Clock">Clock &mdash; time in a small area moves at an unnaturally fast or slow speed</option>
-                  <option value="Compel">Compel &mdash; force a creature to perform a non-lethal task, or free a creature from a prior Compel</option>
-                  <option value="Crucible">Crucible &mdash; heat a metallic object to melting</option>
-                  <option value="Darkness">Darkness &mdash; a living shadow snuffs out all nearby light</option>
-                  <option value="Dazzle">Dazzle &mdash; distract and confuse nearby creatures with colorful moving lights</option>
-                  <option value="Doom">Doom &mdash; make a creature feel a sense of impending doom</option>
-                  <option value="Door">Door &mdash; draw a door on a solid barrier to create a portal through it</option>
-                  <option value="Drain">Drain &mdash; remove all water from a creature</option>
-                  <option value="Dryad">Dryad &mdash; stay still to transform into a tree and communicate with other trees</option>
-                  <option value="Elegy">Elegy &mdash; appear as deceased</option>
-                  <option value="Emote">Emote &mdash; heighten or dampen the current emotions of all in your presence</option>
-                  <option value="Endure">Endure &mdash; touch a creature to allow them to withstand temperature extremes</option>
-                  <option value="Enliven">Enliven &mdash; give flesh and breath to an effigy</option>
-                  <option value="Entangle">Entangle &mdash; cause plants to twist and grasp, holding or slowing a creature</option>
-                  <option value="Ether">Ether &mdash; a touched creature or object becomes spectral and intangible</option>
-                  <option value="Fantasy">Fantasy &mdash; observe and alter the dreams of a known creature</option>
-                  <option value="Fault">Fault &mdash; strike the weakest point of an object with phantasmal force</option>
-                  <option value="Feather">Feather &mdash; reduce the density of an object</option>
-                  <option value="Feral">Feral &mdash; increase the size, temper, and monstrosity of a creature you touch</option>
-                  <option value="Float">Float &mdash; hold your breath to gently levitate</option>
-                  <option value="Flow">Flow &mdash; shape and command bodies of water</option>
-                  <option value="Fountain">Fountain &mdash; a forceful spring of water bursts forth from a location you touch</option>
-                  <option value="Future">Future &mdash; an object disappears, then reappears a short time later in exactly the same spot</option>
-                  <option value="Gale">Gale &mdash; conjure and guide a mighty wind</option>
-                  <option value="Gardener">Gardener &mdash; consume a plant to absorb some of its memories</option>
-                  <option value="Germinate">Germinate &mdash; compel plants to furious growth</option>
-                  <option value="Ghoul">Ghoul &mdash; animate a dead body</option>
-                  <option value="Glamour">Glamour &mdash; appear more charming and attractive</option>
-                  <option value="Gleam">Gleam &mdash; a luminous spirit is bound to an object to project light</option>
-                  <option value="Guide">Guide &mdash; conjure a thread to follow</option>
-                  <option value="Hand">Hand &mdash; concentrate to mentally move a small object you can see</option>
-                  <option value="Haunt">Haunt &mdash; summon a spirit to torment a creature</option>
-                  <option value="Hold">Hold &mdash; a sigil prevents passage through a space for a short time</option>
-                  <option value="Hollow">Hollow &mdash; push a spirit from a body</option>
-                  <option value="Hospitality">Hospitality &mdash; maintain peace while you share food and drink</option>
-                  <option value="Immolate">Immolate &mdash; engulf your body in flame</option>
-                  <option value="Inhabit">Inhabit &mdash; possess a creature</option>
-                  <option value="Inscribe">Inscribe &mdash; create or alter a written or carved message</option>
-                  <option value="Kindle">Kindle &mdash; produce fire from yourself</option>
-                  <option value="Knock">Knock &mdash; open nearby portal that is shut</option>
-                  <option value="Leviathan">Leviathan &mdash; draw forth a creature of the deep</option>
-                  <option value="Liar">Liar &mdash; contact a spirit who can answer any question, but only falsely</option>
-                  <option value="Lift">Lift &mdash; temporarily reverse gravity in a small area</option>
-                  <option value="Martyr">Martyr &mdash; touch a creature to transfer their Conditions to you</option>
-                  <option value="Mask">Mask &mdash; cover your face to remove yourself from others&#39; senses</option>
-                  <option value="Maze">Maze &mdash; the surrounding environment warps into a labyrinth with you at the center</option>
-                  <option value="Medium">Medium &mdash; surface thoughts of nearby creatures enter and overwhelm a target</option>
-                  <option value="Messenger">Messenger &mdash; send a message via a creature</option>
-                  <option value="Mirage">Mirage &mdash; create an illusion that is obviously fake only on close inspection</option>
-                  <option value="Mirror">Mirror &mdash; take on the form of a known creature</option>
-                  <option value="Nightwalk">Nightwalk &mdash; move untraceably through darkness</option>
-                  <option value="Numb">Numb &mdash; reduce sensation within a creature</option>
-                  <option value="Obscure">Obscure &mdash; hide a creature or object from the view of one other creature</option>
-                  <option value="Orchard">Orchard &mdash; conjure a few dozen apples, some poisonous</option>
-                  <option value="Parse">Parse &mdash; divine the meaning of any word, writing, sound, sign, or symbol</option>
-                  <option value="Provoke">Provoke &mdash; force an opponent to make a choice: freeze, fight, or flee</option>
-                  <option value="Rebirth">Rebirth &mdash; force a known spirit to be reborn in a new body</option>
-                  <option value="Repel">Repel &mdash; push away a creature with spiritual force</option>
-                  <option value="Rewind">Rewind &mdash; slightly push a creature back in time</option>
-                  <option value="Rubber">Rubber &mdash; the body of a touched creature becomes elastic and can stretch beyond normal limits</option>
-                  <option value="Rustle">Rustle &mdash; an illusory sound of your choosing appears to come from somewhere nearby</option>
-                  <option value="Scale">Scale &mdash; double or halve the size of an object you touch</option>
-                  <option value="Scent">Scent &mdash; navigate a space by smell alone, or follow the scent trail of a known creature</option>
-                  <option value="Scramble">Scramble &mdash; touch a creature to make them forget their known rituals until the next sunrise</option>
-                  <option value="Scry">Scry &mdash; observe a location in spirit form</option>
-                  <option value="Sever">Sever &mdash; you can detach and reattach a body part, and still control it while removed</option>
-                  <option value="Shell">Shell &mdash; your skin grows a tough outer layer which acts as armor</option>
-                  <option value="Shroud">Shroud &mdash; as long as they remain motionless, a group of creatures are hidden from others&#39; senses</option>
-                  <option value="Silence">Silence &mdash; deafen all nearby for a short amount of time</option>
-                  <option value="Siphon">Siphon &mdash; detect and extract poison from food, water, or a creature</option>
-                  <option value="Sleep">Sleep &mdash; send a creature into a deep slumber</option>
-                  <option value="Smite">Smite &mdash; strike with a spiritual weapon</option>
-                  <option value="Spark">Spark &mdash; touch to revive a newly dead creature, a second touch—even accidental—kills instantly</option>
-                  <option value="Statue">Statue &mdash; touch a creature, object, or surface to turn it to stone</option>
-                  <option value="Steed">Steed &mdash; summon a spectral mount which can walk on air and water</option>
-                  <option value="Summon">Summon &mdash; draw a known creature to you</option>
-                  <option value="Swarm">Swarm &mdash; trade favors with a colony of vermin</option>
-                  <option value="Switch">Switch &mdash; touch to swap bodies with another</option>
-                  <option value="Tadpole">Tadpole &mdash; keep your own mouth closed to allow a creature to breathe, regardless of environment</option>
-                  <option value="Tripwire">Tripwire &mdash; a predefined illusory scene is triggered by an event of your choosing</option>
-                  <option value="Unravel">Unravel &mdash; pull the threads of a Ritual to uncast it, and recast it somewhere else</option>
-                  <option value="Vapor">Vapor &mdash; a noxious cloud fills a small area</option>
-                  <option value="Voice">Voice &mdash; alter your voice or make it come from somewhere nearby</option>
-                  <option value="Void">Void &mdash; remain silent to prevent the casting of any Ritual in your presence</option>
-                  <option value="Wail">Wail &mdash; produce a disorienting sound</option>
-                  <option value="Wall">Wall &mdash; create a dense wall of fire, ice, stone, thorns, or water</option>
-                  <option value="Ward">Ward &mdash; stay concentrating to protect a small area</option>
-                  <option value="Web">Web &mdash; produce webbing to cover a creature or reach something nearby</option>
-                  <option value="Wither">Wither &mdash; reduce plants to ash and rot</option>
-                  <option value="Writhe">Writhe &mdash; transform sticks and branches into serpents which follow your command</option>
-                  <option value="Yoke">Yoke &mdash; apply the strength of a spectral bull to a situation</option>
-                </select>
-              </div>
-
-              <!-- Starting Ruin (auto) -->
-              <label class="label" for="startingRuinValue">Starting Ruin</label>
-              <div class="control">
-                <span id="startingRuinValue" class="tag is-light is-medium" aria-live="polite" aria-atomic="true">1</span>
-              </div>
-              <p id="startingRuinHelp" class="help is-muted">Calculated as 1 + number of rituals.</p>
-            </fieldset>
-          </form>
-        </div>
-
-        <p class="has-text-centered is-size-7 is-muted">Responsive layout via Bulma. Custom CSS kept inline.</p>
+            <!-- Starting Ruin (auto) -->
+            <label class="label" for="startingRuinValue">Starting Ruin</label>
+            <div class="control">
+              <span id="startingRuinValue" class="tag is-light is-medium" aria-live="polite" aria-atomic="true">1</span>
+            </div>
+            <p id="startingRuinHelp" class="help is-muted">Calculated as 1 + number of rituals.</p>
+          </fieldset>
+        </form>
       </div>
-    </section>
-  </main>
+
+      <p class="has-text-centered is-size-7 is-muted">Responsive layout via Bulma. Custom CSS kept inline.</p>
+    </div>
+  </section>
+
   <script>
-  (function(){
-    var nameInput = document.getElementById('name');
-    var pronounsInput = document.getElementById('pronouns');
-    var occupationSelect = document.getElementById('occupation');
-    var backgroundSelect = document.getElementById('background');
-    var driveSelect = document.getElementById('drive');
+   (function(){
+     var nameInput = document.getElementById('name');
+     var pronounsInput = document.getElementById('pronouns');
+     var occupationSelect = document.getElementById('occupation');
+     var backgroundSelect = document.getElementById('background');
+     var driveSelect = document.getElementById('drive');
 
-    var list = document.getElementById('skills-list');
+     var list = document.getElementById('skills-list');
 
-    var NAMES = [
-      'Akaleh','Alina','Aram','Baso','Benah','Daian','Desarim','Elisio','Esfahen','Fion','Foret','Ifori','Inda','Kasien','Kel','Kiva','Lora','Mahera','Masero','Moradi','Neven','Nima','Obeha','Orlen','Osto','Parda','Pela','Rasei','Revel','Sareh','Sibil','Talia','Teodan','Toram','Valen','Vero'
-    ];
+     var NAMES = [
+       'Akaleh','Alina','Aram','Baso','Benah','Daian','Desarim','Elisio','Esfahen','Fion','Foret','Ifori','Inda','Kasien','Kel','Kiva','Lora','Mahera','Masero','Moradi','Neven','Nima','Obeha','Orlen','Osto','Parda','Pela','Rasei','Revel','Sareh','Sibil','Talia','Teodan','Toram','Valen','Vero'
+     ];
 
-    var PRONOUNS = ['he/him','she/her'];
+     var PRONOUNS = ['he/him','she/her'];
 
-    function renderSkills(skills){
-      list.innerHTML = '';
-      if (!skills || !skills.length){
-        var sp = document.createElement('span');
-        sp.className = 'tag is-light';
-        sp.textContent = '—';
-        list.appendChild(sp);
-        return;
-      }
-      skills.forEach(function(s){
-        var sp = document.createElement('span');
-        sp.className = 'tag';
-        sp.textContent = s;
-        list.appendChild(sp);
-      });
-    }
+     function renderSkills(skills){
+       list.innerHTML = '';
+       if (!skills || !skills.length){
+         var sp = document.createElement('span');
+         sp.className = 'tag is-light';
+         sp.textContent = '—';
+         list.appendChild(sp);
+         return;
+       }
+       skills.forEach(function(s){
+         var sp = document.createElement('span');
+         sp.className = 'tag';
+         sp.textContent = s;
+         list.appendChild(sp);
+       });
+     }
 
-    function update(){
-      var occOpt = occupationSelect && occupationSelect.selectedOptions ? occupationSelect.selectedOptions[0] : null;
-      var occSkills = (occOpt && occOpt.dataset && occOpt.dataset.skills) ? occOpt.dataset.skills.split(',') : [];
+     function update(){
+       var occOpt = occupationSelect && occupationSelect.selectedOptions ? occupationSelect.selectedOptions[0] : null;
+       var occSkills = (occOpt && occOpt.dataset && occOpt.dataset.skills) ? occOpt.dataset.skills.split(',') : [];
 
-      var bgOpt = backgroundSelect && backgroundSelect.selectedOptions ? backgroundSelect.selectedOptions[0] : null;
-      var bgSkill = (bgOpt && bgOpt.dataset && bgOpt.dataset.skill) ? bgOpt.dataset.skill : '';
+       var bgOpt = backgroundSelect && backgroundSelect.selectedOptions ? backgroundSelect.selectedOptions[0] : null;
+       var bgSkill = (bgOpt && bgOpt.dataset && bgOpt.dataset.skill) ? bgOpt.dataset.skill : '';
 
-      var combined = occSkills.slice();
-      if (bgSkill) combined.push(bgSkill);
+       var combined = occSkills.slice();
+       if (bgSkill) combined.push(bgSkill);
 
-      // Deduplicate while preserving order
-      var seen = Object.create(null);
-      var unique = [];
-      combined.forEach(function(s){
-        if (!seen[s]) { seen[s] = true; unique.push(s); }
-      });
+       // Deduplicate while preserving order
+       var seen = Object.create(null);
+       var unique = [];
+       combined.forEach(function(s){
+         if (!seen[s]) { seen[s] = true; unique.push(s); }
+       });
 
-      renderSkills(unique);
-    }
+       renderSkills(unique);
+     }
 
-    function randomizeSelect(sel){
-      if (!sel) return;
-      var opts = sel.options;
-      var start = 0;
-      if (opts.length && (opts[0].value === '' || /^—/.test(opts[0].text))) start = 1;
-      if (opts.length <= start) return;
-      var idx = start + Math.floor(Math.random() * (opts.length - start));
-      sel.selectedIndex = idx;
-      sel.dispatchEvent(new Event('change', { bubbles: true }));
-    }
+     function randomizeSelect(sel){
+       if (!sel) return;
+       var opts = sel.options;
+       var start = 0;
+       if (opts.length && (opts[0].value === '' || /^—/.test(opts[0].text))) start = 1;
+       if (opts.length <= start) return;
+       var idx = start + Math.floor(Math.random() * (opts.length - start));
+       sel.selectedIndex = idx;
+       sel.dispatchEvent(new Event('change', { bubbles: true }));
+     }
 
-    function randomizeName(){
-      if (!nameInput || !NAMES.length) return;
-      var n = NAMES[Math.floor(Math.random() * NAMES.length)];
-      nameInput.value = n;
-    }
+     function randomizeName(){
+       if (!nameInput || !NAMES.length) return;
+       var n = NAMES[Math.floor(Math.random() * NAMES.length)];
+       nameInput.value = n;
+     }
 
-    function randomizePronouns(){
-      if (!pronounsInput || !PRONOUNS.length) return;
-      var p = PRONOUNS[Math.floor(Math.random() * PRONOUNS.length)];
-      pronounsInput.value = p;
-    }
+     function randomizePronouns(){
+       if (!pronounsInput || !PRONOUNS.length) return;
+       var p = PRONOUNS[Math.floor(Math.random() * PRONOUNS.length)];
+       pronounsInput.value = p;
+     }
 
-    // Rituals dynamic rows (0–3)
-    var ritualsRows = document.getElementById('rituals-rows');
-    var ritualsMaster = document.getElementById('ritualsMaster');
-    var ritualsAddLink = document.getElementById('ritualsAddLink');
-    var MAX_RITUALS = 3;
+     // Rituals dynamic rows (0–3)
+     var ritualsRows = document.getElementById('rituals-rows');
+     var ritualsMaster = document.getElementById('ritualsMaster');
+     var ritualsAddLink = document.getElementById('ritualsAddLink');
+     var MAX_RITUALS = 3;
 
-    var startingRuinEl = document.getElementById('startingRuinValue');
-    function updateStartingRuin(){
-      var count = ritualsRows ? ritualsRows.children.length : 0;
-      startingRuinEl.textContent = String(1 + count);
-    }
+     var startingRuinEl = document.getElementById('startingRuinValue');
+     function updateStartingRuin(){
+       var count = ritualsRows ? ritualsRows.children.length : 0;
+       startingRuinEl.textContent = String(1 + count);
+     }
 
-    function updateRitualAddState(){
-      var atMax = ritualsRows ? ritualsRows.children.length >= MAX_RITUALS : false;
-      if (ritualsAddLink){
-        ritualsAddLink.classList.toggle('is-disabled', atMax);
-        ritualsAddLink.setAttribute('aria-disabled', atMax ? 'true' : 'false');
-      }
-      updateStartingRuin();
-    }
+     function updateRitualAddState(){
+       var atMax = ritualsRows ? ritualsRows.children.length >= MAX_RITUALS : false;
+       if (ritualsAddLink){
+         ritualsAddLink.classList.toggle('is-disabled', atMax);
+         ritualsAddLink.setAttribute('aria-disabled', atMax ? 'true' : 'false');
+       }
+       updateStartingRuin();
+     }
 
-    function createRitualRow(value){
-      if (!ritualsRows || !ritualsMaster) return;
-      if (ritualsRows.children.length >= MAX_RITUALS) return;
+     function createRitualRow(value){
+       if (!ritualsRows || !ritualsMaster) return;
+       if (ritualsRows.children.length >= MAX_RITUALS) return;
 
-      var row = document.createElement('div');
-      row.className = 'field is-grouped ritual-row';
+       var row = document.createElement('div');
+       row.className = 'field is-grouped ritual-row';
 
-      var ctrlRemove = document.createElement('div');
-      ctrlRemove.className = 'control';
-      var btnRemove = document.createElement('button');
-      btnRemove.type = 'button';
-      btnRemove.className = 'delete is-medium';
-      btnRemove.setAttribute('aria-label','Remove ritual');
-      ctrlRemove.appendChild(btnRemove);
+       var ctrlRemove = document.createElement('div');
+       ctrlRemove.className = 'control';
+       var btnRemove = document.createElement('button');
+       btnRemove.type = 'button';
+       btnRemove.className = 'delete is-medium';
+       btnRemove.setAttribute('aria-label','Remove ritual');
+       ctrlRemove.appendChild(btnRemove);
 
-      var ctrlSelect = document.createElement('div');
-      ctrlSelect.className = 'select';
-      var select = ritualsMaster.cloneNode(true);
-      select.removeAttribute('id');
-      select.style.display = '';
-      select.name = 'rituals[]';
-      select.className = 'ritual-select';
-      if (typeof value === 'number') { select.selectedIndex = value; }
-      else if (value) { select.value = value; }
-      ctrlSelect.appendChild(select);
+       var ctrlSelect = document.createElement('div');
+       ctrlSelect.className = 'select';
+       var select = ritualsMaster.cloneNode(true);
+       select.removeAttribute('id');
+       select.style.display = '';
+       select.name = 'rituals[]';
+       select.className = 'ritual-select';
+       if (typeof value === 'number') { select.selectedIndex = value; }
+       else if (value) { select.value = value; }
+       ctrlSelect.appendChild(select);
 
-      var ctrlRand = document.createElement('div');
-      ctrlRand.className = 'control';
-      var btnRand = document.createElement('button');
-      btnRand.type = 'button';
-      btnRand.className = 'button is-light';
-      btnRand.title = 'Randomise ritual';
-      btnRand.setAttribute('aria-label','Randomise ritual');
-      btnRand.textContent = '🎲';
-      ctrlRand.appendChild(btnRand);
+       var ctrlRand = document.createElement('div');
+       ctrlRand.className = 'control';
+       var btnRand = document.createElement('button');
+       btnRand.type = 'button';
+       btnRand.className = 'button is-light';
+       btnRand.title = 'Randomise ritual';
+       btnRand.setAttribute('aria-label','Randomise ritual');
+       btnRand.textContent = '🎲';
+       ctrlRand.appendChild(btnRand);
 
-      row.appendChild(ctrlRemove);
-      row.appendChild(ctrlSelect);
-      row.appendChild(ctrlRand);
-      ritualsRows.appendChild(row);
+       row.appendChild(ctrlRemove);
+       row.appendChild(ctrlSelect);
+       row.appendChild(ctrlRand);
+       ritualsRows.appendChild(row);
 
-      btnRemove.addEventListener('click', function(){ row.remove(); updateRitualAddState(); });
-      btnRand.addEventListener('click', function(){ randomizeSelect(select); });
+       btnRemove.addEventListener('click', function(){ row.remove(); updateRitualAddState(); });
+       btnRand.addEventListener('click', function(){ randomizeSelect(select); });
 
-      updateRitualAddState();
-    }
+       updateRitualAddState();
+     }
 
-    if (ritualsAddLink) ritualsAddLink.addEventListener('click', function(e){ e.preventDefault(); createRitualRow(); });
-    function clearAllRitualRows(){
-      if (!ritualsRows) return;
-      while (ritualsRows.firstChild) ritualsRows.removeChild(ritualsRows.firstChild);
-      updateRitualAddState();
-    }
+     if (ritualsAddLink) ritualsAddLink.addEventListener('click', function(e){ e.preventDefault(); createRitualRow(); });
+     function clearAllRitualRows(){
+       if (!ritualsRows) return;
+       while (ritualsRows.firstChild) ritualsRows.removeChild(ritualsRows.firstChild);
+       updateRitualAddState();
+     }
 
-    function getAllRitualValues(){
-      var vals = [];
-      if (!ritualsMaster) return vals;
-      for (var i=0;i<ritualsMaster.options.length;i++){
-        var o = ritualsMaster.options[i];
-        if (!o.value) continue; // skip placeholder
-        vals.push(o.value);
-      }
-      return vals;
-    }
+     function getAllRitualValues(){
+       var vals = [];
+       if (!ritualsMaster) return vals;
+       for (var i=0;i<ritualsMaster.options.length;i++){
+         var o = ritualsMaster.options[i];
+         if (!o.value) continue; // skip placeholder
+         vals.push(o.value);
+       }
+       return vals;
+     }
 
-    function shuffle(arr){
-      for (var i = arr.length - 1; i > 0; i--) {
-        var j = Math.floor(Math.random() * (i + 1));
-        var t = arr[i]; arr[i] = arr[j]; arr[j] = t;
-      }
-      return arr;
-    }
+     function shuffle(arr){
+       for (var i = arr.length - 1; i > 0; i--) {
+         var j = Math.floor(Math.random() * (i + 1));
+         var t = arr[i]; arr[i] = arr[j]; arr[j] = t;
+       }
+       return arr;
+     }
 
-    function randomizeAll(){
-      // Name & pronouns
-      randomizeName();
-      randomizePronouns();
+     function randomizeAll(){
+       // Name & pronouns
+       randomizeName();
+       randomizePronouns();
 
-      // Occupation, Background, Drive (each triggers change -> updates skills)
-      randomizeSelect(occupationSelect);
-      randomizeSelect(backgroundSelect);
-      randomizeSelect(driveSelect);
+       // Occupation, Background, Drive (each triggers change -> updates skills)
+       randomizeSelect(occupationSelect);
+       randomizeSelect(backgroundSelect);
+       randomizeSelect(driveSelect);
 
-      // Rituals: pick unique 0–3
-      clearAllRitualRows();
-      var available = getAllRitualValues();
-      var count = Math.floor(Math.random() * 4); // 0..3
-      if (count > available.length) count = available.length;
-      shuffle(available);
-      var picks = available.slice(0, count);
-      for (var k = 0; k < picks.length; k++){
-        createRitualRow(picks[k]);
-      }
-      updateRitualAddState();
-    }
+       // Rituals: pick unique 0–3
+       clearAllRitualRows();
+       var available = getAllRitualValues();
+       var count = Math.floor(Math.random() * 4); // 0..3
+       if (count > available.length) count = available.length;
+       shuffle(available);
+       var picks = available.slice(0, count);
+       for (var k = 0; k < picks.length; k++){
+         createRitualRow(picks[k]);
+       }
+       updateRitualAddState();
+     }
 
-    // === Save/Load to URL hash ===
-    function bytesToBase64(bytes){
-      // Build binary string, then Base64-encode, then make URL-friendlier
-      var binary = '';
-      var chunk = 0x8000;
-      for (var i=0; i<bytes.length; i+=chunk){
-        binary += String.fromCharCode.apply(null, bytes.subarray(i, i+chunk));
-      }
-      var b64 = btoa(binary)
-        .replace(/\+/g, '-')  // plus -> dash
-        .replace(/\//g, '.')  // slash -> dot
-        .replace(/=+$/,'');    // drop padding
-      return b64;
-    }
-    function base64ToBytes(b64){
-      // Reverse our URL-ish variant back to standard Base64
-      var s = (b64 || '')
-        .replace(/-/g, '+')
-        .replace(/\./g, '/');
-      var padNeeded = (4 - (s.length % 4)) % 4;
-      if (padNeeded) s += '===='.slice(0, padNeeded);
-      var binary = atob(s);
-      var len = binary.length;
-      var out = new Uint8Array(len);
-      for (var i=0;i<len;i++) out[i] = binary.charCodeAt(i);
-      return out;
-    }
-    var encoder = new TextEncoder();
-    var decoder = new TextDecoder();
+     // === Save/Load to URL hash ===
+     function bytesToBase64(bytes){
+       // Build binary string, then Base64-encode, then make URL-friendlier
+       var binary = '';
+       var chunk = 0x8000;
+       for (var i=0; i<bytes.length; i+=chunk){
+         binary += String.fromCharCode.apply(null, bytes.subarray(i, i+chunk));
+       }
+       var b64 = btoa(binary)
+         .replace(/\+/g, '-')  // plus -> dash
+         .replace(/\//g, '.')  // slash -> dot
+         .replace(/=+$/,'');    // drop padding
+       return b64;
+     }
+     function base64ToBytes(b64){
+       // Reverse our URL-ish variant back to standard Base64
+       var s = (b64 || '')
+         .replace(/-/g, '+')
+         .replace(/\./g, '/');
+       var padNeeded = (4 - (s.length % 4)) % 4;
+       if (padNeeded) s += '===='.slice(0, padNeeded);
+       var binary = atob(s);
+       var len = binary.length;
+       var out = new Uint8Array(len);
+       for (var i=0;i<len;i++) out[i] = binary.charCodeAt(i);
+       return out;
+     }
+     var encoder = new TextEncoder();
+     var decoder = new TextDecoder();
 
-    function encodeStateToBytes(){
-      var arr = [];
-      // 6 header bytes
-      arr.push(occupationSelect ? (occupationSelect.selectedIndex & 0xFF) : 0);
-      arr.push(backgroundSelect ? (backgroundSelect.selectedIndex & 0xFF) : 0);
-      arr.push(driveSelect ? (driveSelect.selectedIndex & 0xFF) : 0);
-      // rituals (0..3), 255 if missing
-      var rows = ritualsRows ? ritualsRows.querySelectorAll('select.ritual-select') : [];
-      for (var i=0;i<3;i++){
-        var b = 0xFF; // default missing
-        if (rows && rows[i]){
-          var idx = rows[i].selectedIndex|0; // 0 -> placeholder
-          b = (idx === 0 ? 0xFF : idx & 0xFF);
-        }
-        arr.push(b);
-      }
-      // name, 0x00, pronouns
-      var nameBytes = encoder.encode(nameInput ? nameInput.value : '');
-      var pronBytes = encoder.encode(pronounsInput ? pronounsInput.value : '');
-      var total = new Uint8Array(6 + nameBytes.length + 1 + pronBytes.length);
-      total.set(arr, 0);
-      total.set(nameBytes, 6);
-      total[6 + nameBytes.length] = 0x00;
-      total.set(pronBytes, 6 + nameBytes.length + 1);
-      return total;
-    }
+     function encodeStateToBytes(){
+       var arr = [];
+       // 6 header bytes
+       arr.push(occupationSelect ? (occupationSelect.selectedIndex & 0xFF) : 0);
+       arr.push(backgroundSelect ? (backgroundSelect.selectedIndex & 0xFF) : 0);
+       arr.push(driveSelect ? (driveSelect.selectedIndex & 0xFF) : 0);
+       // rituals (0..3), 255 if missing
+       var rows = ritualsRows ? ritualsRows.querySelectorAll('select.ritual-select') : [];
+       for (var i=0;i<3;i++){
+         var b = 0xFF; // default missing
+         if (rows && rows[i]){
+           var idx = rows[i].selectedIndex|0; // 0 -> placeholder
+           b = (idx === 0 ? 0xFF : idx & 0xFF);
+         }
+         arr.push(b);
+       }
+       // name, 0x00, pronouns
+       var nameBytes = encoder.encode(nameInput ? nameInput.value : '');
+       var pronBytes = encoder.encode(pronounsInput ? pronounsInput.value : '');
+       var total = new Uint8Array(6 + nameBytes.length + 1 + pronBytes.length);
+       total.set(arr, 0);
+       total.set(nameBytes, 6);
+       total[6 + nameBytes.length] = 0x00;
+       total.set(pronBytes, 6 + nameBytes.length + 1);
+       return total;
+     }
 
-    function decodeStateFromBytes(bytes){
-      if (!bytes || bytes.length < 6) return;
-      // Header
-      var occ = bytes[0]|0, bg = bytes[1]|0, drv = bytes[2]|0;
-      var r1 = bytes[3]|0, r2 = bytes[4]|0, r3 = bytes[5]|0;
+     function decodeStateFromBytes(bytes){
+       if (!bytes || bytes.length < 6) return;
+       // Header
+       var occ = bytes[0]|0, bg = bytes[1]|0, drv = bytes[2]|0;
+       var r1 = bytes[3]|0, r2 = bytes[4]|0, r3 = bytes[5]|0;
 
-      // Apply selects (clamp to bounds)
-      if (occupationSelect) occupationSelect.selectedIndex = Math.min(Math.max(0, occ), occupationSelect.options.length - 1);
-      if (backgroundSelect) backgroundSelect.selectedIndex = Math.min(Math.max(0, bg), backgroundSelect.options.length - 1);
-      if (driveSelect) driveSelect.selectedIndex = Math.min(Math.max(0, drv), driveSelect.options.length - 1);
+       // Apply selects (clamp to bounds)
+       if (occupationSelect) occupationSelect.selectedIndex = Math.min(Math.max(0, occ), occupationSelect.options.length - 1);
+       if (backgroundSelect) backgroundSelect.selectedIndex = Math.min(Math.max(0, bg), backgroundSelect.options.length - 1);
+       if (driveSelect) driveSelect.selectedIndex = Math.min(Math.max(0, drv), driveSelect.options.length - 1);
 
-      // Ritual rows
-      clearAllRitualRows();
-      var ritualIdxs = [r1, r2, r3];
-      for (var i=0;i<ritualIdxs.length;i++){
-        var b = ritualIdxs[i];
-        if (b === 0xFF) continue; // missing
-        createRitualRow(typeof b === 'number' ? b : undefined);
-      }
+       // Ritual rows
+       clearAllRitualRows();
+       var ritualIdxs = [r1, r2, r3];
+       for (var i=0;i<ritualIdxs.length;i++){
+         var b = ritualIdxs[i];
+         if (b === 0xFF) continue; // missing
+         createRitualRow(typeof b === 'number' ? b : undefined);
+       }
 
-      // Name and pronouns
-      var sep = -1;
-      for (var j=6; j<bytes.length; j++){ if (bytes[j] === 0){ sep = j; break; } }
-      var nameBytes = bytes.subarray(6, sep === -1 ? bytes.length : sep);
-      var pronBytes = sep === -1 ? new Uint8Array(0) : bytes.subarray(sep+1);
-      if (nameInput) nameInput.value = decoder.decode(nameBytes);
-      if (pronounsInput) pronounsInput.value = decoder.decode(pronBytes);
+       // Name and pronouns
+       var sep = -1;
+       for (var j=6; j<bytes.length; j++){ if (bytes[j] === 0){ sep = j; break; } }
+       var nameBytes = bytes.subarray(6, sep === -1 ? bytes.length : sep);
+       var pronBytes = sep === -1 ? new Uint8Array(0) : bytes.subarray(sep+1);
+       if (nameInput) nameInput.value = decoder.decode(nameBytes);
+       if (pronounsInput) pronounsInput.value = decoder.decode(pronBytes);
 
-      // Trigger UI updates
-      update();
-      updateRitualAddState();
-    }
+       // Trigger UI updates
+       update();
+       updateRitualAddState();
+     }
 
-    function saveToHash(){
-      var bytes = encodeStateToBytes();
-      var b64 = bytesToBase64(bytes);
-      location.hash = b64;
-    }
+     function saveToHash(){
+       var bytes = encodeStateToBytes();
+       var b64 = bytesToBase64(bytes);
+       location.hash = b64;
+     }
 
-    function loadFromHash(str){
-      var b64 = typeof str === 'string' ? str : (location.hash ? location.hash.slice(1) : '');
-      if (!b64) return;
-      try {
-        var bytes = base64ToBytes(b64);
-        decodeStateFromBytes(bytes);
-      } catch (e) {
-        console.warn('Failed to load from URL hash', e);
-      }
-    }
+     function loadFromHash(str){
+       var b64 = typeof str === 'string' ? str : (location.hash ? location.hash.slice(1) : '');
+       if (!b64) return;
+       try {
+         var bytes = base64ToBytes(b64);
+         decodeStateFromBytes(bytes);
+       } catch (e) {
+         console.warn('Failed to load from URL hash', e);
+       }
+     }
 
-    // Buttons
-    var btnName = document.getElementById('btnRandName');
-    var btnPron = document.getElementById('btnRandPronouns');
-    var btnOcc = document.getElementById('btnRandOccupation');
-    var btnBg = document.getElementById('btnRandBackground');
-    var btnDrv = document.getElementById('btnRandDrive');
-    var btnAll = document.getElementById('btnRandAll');
-    var btnSave = document.getElementById('btnSaveHash');
+     // Buttons
+     var btnName = document.getElementById('btnRandName');
+     var btnPron = document.getElementById('btnRandPronouns');
+     var btnOcc = document.getElementById('btnRandOccupation');
+     var btnBg = document.getElementById('btnRandBackground');
+     var btnDrv = document.getElementById('btnRandDrive');
+     var btnAll = document.getElementById('btnRandAll');
+     var btnSave = document.getElementById('btnSaveHash');
 
-    if (btnName) btnName.addEventListener('click', randomizeName);
-    if (btnPron) btnPron.addEventListener('click', randomizePronouns);
-    if (btnOcc) btnOcc.addEventListener('click', function(){ randomizeSelect(occupationSelect); });
-    if (btnBg) btnBg.addEventListener('click', function(){ randomizeSelect(backgroundSelect); });
-    if (btnDrv) btnDrv.addEventListener('click', function(){ randomizeSelect(driveSelect); });
-    if (btnAll) btnAll.addEventListener('click', randomizeAll);
-    if (btnSave) btnSave.addEventListener('click', saveToHash);
+     if (btnName) btnName.addEventListener('click', randomizeName);
+     if (btnPron) btnPron.addEventListener('click', randomizePronouns);
+     if (btnOcc) btnOcc.addEventListener('click', function(){ randomizeSelect(occupationSelect); });
+     if (btnBg) btnBg.addEventListener('click', function(){ randomizeSelect(backgroundSelect); });
+     if (btnDrv) btnDrv.addEventListener('click', function(){ randomizeSelect(driveSelect); });
+     if (btnAll) btnAll.addEventListener('click', randomizeAll);
+     if (btnSave) btnSave.addEventListener('click', saveToHash);
 
-    if (occupationSelect) occupationSelect.addEventListener('change', update);
-    if (backgroundSelect) backgroundSelect.addEventListener('change', update);
+     if (occupationSelect) occupationSelect.addEventListener('change', update);
+     if (backgroundSelect) backgroundSelect.addEventListener('change', update);
 
-    // Init
-    update();
-    updateRitualAddState();
-    if (location.hash && location.hash.length > 1) { loadFromHash(); }
-  })();
+     // Init
+     update();
+     updateRitualAddState();
+     if (location.hash && location.hash.length > 1) { loadFromHash(); }
+   })();
   </script>
 </body>
 </html>
