@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Trophy Dark • Character Builder</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/1.0.4/css/bulma.min.css" integrity="sha512-yh2RE0wZCVZeysGiqTwDTO/dKelCbS9bP2L94UvOFtl/FKXcNAje3Y2oBg/ZMZ3LS1sicYk4dYVGtDex75fvvA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
   <section class="section">
@@ -18,10 +19,15 @@
           </div>
           <div class="level-right">
             <div class="level-item">
-              <button type="button" id="btnSaveHash" class="button is-info is-light" title="Save to URL" aria-label="Save to URL">🔗 Save link</button>
+              <button type="button" id="btnSaveHash" class="button is-info is-light" title="Save to URL" aria-label="Save to URL">
+                <span class="icon"><i class="fas fa-link"></i></span>
+                <span>Save link</span>
+              </button>
             </div>
             <div class="level-item">
-              <button type="button" id="btnRandAll" class="button is-primary" title="Randomise everything" aria-label="Randomise everything">🎲 Randomise all</button>
+              <button type="button" id="btnRandAll" class="button is-primary" title="Randomise everything" aria-label="Randomise everything">
+                <span class="icon"><i class="fas fa-dice"></i></span>
+                <span>Randomise all</span></button>
             </div>
           </div>
         </nav>
@@ -39,7 +45,9 @@
                       <input id="name" name="name" class="input" type="text" maxlength="80">
                     </div>
                     <div class="control">
-                      <button type="button" id="btnRandName" class="button" title="Randomise name" aria-label="Randomise name">🎲</button>
+                      <button type="button" id="btnRandName" class="button" title="Randomise name" aria-label="Randomise name">
+                        <span class="icon"><i class="fas fa-dice"></i></span>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -53,7 +61,9 @@
                       <input id="pronouns" name="pronouns" class="input" type="text" placeholder="e.g. he/him" maxlength="60" aria-describedby="pronounsHelp">
                     </div>
                     <div class="control">
-                      <button type="button" id="btnRandPronouns" class="button" title="Randomise pronouns" aria-label="Randomise pronouns">🎲</button>
+                      <button type="button" id="btnRandPronouns" class="button" title="Randomise pronouns" aria-label="Randomise pronouns">
+                        <span class="icon"><i class="fas fa-dice"></i></span>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -109,7 +119,9 @@
                       </select>
                     </div>
                     <div class="control">
-                      <button type="button" id="btnRandOccupation" class="button" title="Randomise occupation" aria-label="Randomise occupation">🎲</button>
+                      <button type="button" id="btnRandOccupation" class="button" title="Randomise occupation" aria-label="Randomise occupation">
+                        <span class="icon"><i class="fas fa-dice"></i></span>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -161,7 +173,9 @@
                       </select>
                     </div>
                     <div class="control">
-                      <button type="button" id="btnRandBackground" class="button" title="Randomise background" aria-label="Randomise background">🎲</button>
+                      <button type="button" id="btnRandBackground" class="button" title="Randomise background" aria-label="Randomise background">
+                        <span class="icon"><i class="fas fa-dice"></i></span>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -222,7 +236,9 @@
                   </select>
                 </div>
                 <div class="control">
-                  <button type="button" id="btnRandDrive" class="button" title="Randomise drive" aria-label="Randomise drive">🎲</button>
+                  <button type="button" id="btnRandDrive" class="button" title="Randomise drive" aria-label="Randomise drive">
+                    <span class="icon"><i class="fas fa-dice"></i></span>
+                  </button>
                 </div>
               </div>
             </div>
@@ -234,7 +250,10 @@
               <!-- Container for up to 3 ritual rows -->
               <div id="rituals-rows"></div>
 
-              <a href="#" id="ritualsAddLink" class="button add-link">Add ritual</a>
+              <a href="#" id="ritualsAddLink" class="button add-link">
+                <span class="icon"><i class="fas fa-plus"></i></span>
+                <span>Add ritual</span>
+              </a>
 
               <!-- Hidden master select used to clone options -->
               <select id="ritualsMaster" aria-hidden="true" style="display:none">
