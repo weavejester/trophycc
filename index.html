@@ -250,16 +250,16 @@
               <!-- Container for up to 3 ritual rows -->
               <div id="rituals-rows"></div>
 
-              <a href="#" id="ritualsAddLink" class="button add-link">
+              <button type="button" id="ritualsAddLink" class="button add-link">
                 <span class="icon"><i class="fas fa-plus"></i></span>
                 <span>Add ritual</span>
-              </a>
+              </button>
 
               <!-- Hidden master select used to clone options -->
               <template id="ritualRowTemplate">
-                <div class="field is-grouped ritual-row">
+                <div class="field is-grouped ritual-row mb-2">
                   <div class="control">
-                    <button type="button" class="delete is-medium" aria-label="Remove ritual"></button>
+                    <button class="delete my-2" aria-label="Remove ritual"></button>
                   </div>
                   <div class="control is-expanded">
                     <div class="select is-fullwidth">
@@ -377,7 +377,9 @@
                     </div>
                   </div>
                   <div class="control">
-                    <button type="button" class="button is-light ritual-random" title="Randomise ritual" aria-label="Randomise ritual">🎲</button>
+                    <button type="button" class="button ritual-random" title="Randomise ritual" aria-label="Randomise ritual">
+                      <span class="icon"><i class="fas fa-dice"></i></span>
+                    </button>
                   </div>
                 </div>
               </template>
@@ -519,7 +521,7 @@
      }
 
      if (ritualsAddLink) {
-       ritualsAddLink.addEventListener('click', function(e){ e.preventDefault(); createRitualRow(); });
+       ritualsAddLink.addEventListener('click', function(e){ createRitualRow(); });
      }
 
      function clearAllRitualRows(){
