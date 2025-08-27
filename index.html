@@ -36,7 +36,7 @@
             <div class="level-item">
               <button type="button" id="btnSaveHash" class="button is-info is-light" title="Save to URL" aria-label="Save to URL">
                 <span class="icon"><i class="fas fa-link"></i></span>
-                <span>Save link</span>
+                <span>Copy permalink</span>
               </button>
             </div>
             <div class="level-item">
@@ -695,7 +695,10 @@
      function saveToHash(){
        var bytes = encodeStateToBytes();
        var b64 = bytesToBase64(bytes);
-       location.hash = b64;
+       var url = new URL(location.href);
+       url.hash = b64;
+       navigator.clipboard.writeText(url.href);
+       if (location.hash != '') location.hash = b64;
      }
 
      function loadFromHash(str){
