@@ -1,11 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Trophy Dark • Character Builder</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/1.0.4/css/bulma.min.css" integrity="sha512-yh2RE0wZCVZeysGiqTwDTO/dKelCbS9bP2L94UvOFtl/FKXcNAje3Y2oBg/ZMZ3LS1sicYk4dYVGtDex75fvvA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+   html { background: #222; }
+   .has-background-danger { background: hsl(347.6, 88.5%, 37.5%) !important }
+  </style>
 </head>
 <body>
   <section class="section">
@@ -186,7 +190,7 @@
             <div class="field">
               <label class="label" for="skills-list">Skills</label>
               <div id="skills-list" class="tags are-medium" aria-live="polite" aria-atomic="true">
-                <span class="tag is-light">—</span>
+                <span class="tag is-warning">—</span>
               </div>
             </div>
 
@@ -259,7 +263,7 @@
               <template id="ritualRowTemplate">
                 <div class="field is-grouped ritual-row mb-2">
                   <div class="control">
-                    <button class="delete my-2" aria-label="Remove ritual"></button>
+                    <button class="delete has-background-danger my-2" aria-label="Remove ritual"></button>
                   </div>
                   <div class="control is-expanded">
                     <div class="select is-fullwidth">
@@ -394,8 +398,6 @@
           </fieldset>
         </form>
       </div>
-
-      <p class="has-text-centered is-size-7 is-muted">Responsive layout via Bulma. Custom CSS kept inline.</p>
     </div>
   </section>
 
@@ -419,14 +421,14 @@
        list.innerHTML = '';
        if (!skills || !skills.length){
          var sp = document.createElement('span');
-         sp.className = 'tag is-light';
+         sp.className = 'tag is-warning';
          sp.textContent = '—';
          list.appendChild(sp);
          return;
        }
        skills.forEach(function(s){
          var sp = document.createElement('span');
-         sp.className = 'tag';
+         sp.className = 'tag is-warning';
          sp.textContent = s;
          list.appendChild(sp);
        });
