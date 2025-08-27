@@ -260,7 +260,7 @@
 
             <!-- Rituals (dynamic rows) -->
             <div class="field" id="ritualsField">
-              <label class="label" for="rituals">Rituals</label>
+              <label class="label" for="rituals">Rituals (max 3)</label>
 
               <!-- Container for up to 3 ritual rows -->
               <div id="rituals-rows"></div>
@@ -401,11 +401,10 @@
             </div>
 
             <!-- Starting Ruin (auto) -->
-            <label class="label" for="startingRuinValue">Starting Ruin</label>
+            <label class="label" for="startingRuinValue">Starting Ruin (1 + rituals)</label>
             <div class="control">
               <span id="startingRuinValue" class="tag is-dark is-medium" aria-live="polite" aria-atomic="true">1</span>
             </div>
-            <p id="startingRuinHelp" class="help is-muted">Calculated as 1 + number of rituals.</p>
           </fieldset>
         </form>
       </div>
@@ -503,7 +502,7 @@
      function updateRitualAddState(){
        var atMax = ritualsRows ? ritualsRows.children.length >= MAX_RITUALS : false;
        if (ritualsAddLink){
-         ritualsAddLink.classList.toggle('is-disabled', atMax);
+         ritualsAddLink.disabled = atMax;
          ritualsAddLink.setAttribute('aria-disabled', atMax ? 'true' : 'false');
        }
        updateStartingRuin();
