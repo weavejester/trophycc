@@ -23,6 +23,17 @@
    #diceResults .tag.is-light {
        color: #333;
    }
+   /* Hide the spin buttons in WebKit browsers */
+   input::-webkit-outer-spin-button,
+   input::-webkit-inner-spin-button {
+       -webkit-appearance: none;
+       margin: 0;
+   }
+
+   /* Hide spin buttons in Firefox */
+   input[type="number"] {
+       -moz-appearance: textfield;
+   }
   </style>
 </head>
 <body>
@@ -69,18 +80,50 @@
           <section class="modal-card-body">
             <div class="columns">
               <div class="column">
-                <div class="field">
-                  <label class="label" for="lightDice">Light dice</label>
-                  <div class="control">
-                    <input id="lightDice" class="input" type="number" min="0" max="10" value="0" />
+                <div class="field is-horizontal">
+                  <div class="field-label is-normal">
+                    <label class="label" for="lightDice">Light&nbsp;dice</label>
+                  </div>
+                  <div class="field-body">
+                    <div class="field has-addons">
+                      <div class="control">
+                        <button class="button" type="button" id="btnLightDiceMinus" aria-label="Decrease light dice">
+                          <span class="icon is-small"><i class="fas fa-minus"></i></span>
+                        </button>
+                      </div>
+                      <div class="control">
+                        <input id="lightDice" class="input" type="number" min="0" max="10" value="0" />
+                      </div>
+                      <div class="control">
+                        <button class="button" type="button" id="btnLightDicePlus" aria-label="Increase light dice">
+                          <span class="icon is-small"><i class="fas fa-plus"></i></span>
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
               <div class="column">
-                <div class="field">
-                  <label class="label" for="darkDice">Dark dice</label>
-                  <div class="control">
-                    <input id="darkDice" class="input" type="number" min="0" max="10" value="0" />
+                <div class="field is-horizontal">
+                  <div class="field-label is-normal">
+                    <label class="label" for="darkDice">Dark&nbsp;dice</label>
+                  </div>
+                  <div class="field-body">
+                    <div class="field has-addons">
+                      <div class="control">
+                        <button class="button" type="button" id="btnDarkDiceMinus" aria-label="Decrease dark dice">
+                          <span class="icon is-small"><i class="fas fa-minus"></i></span>
+                        </button>
+                      </div>
+                      <div class="control">
+                        <input id="darkDice" class="input" type="number" min="0" max="10" value="0" />
+                      </div>
+                      <div class="control">
+                        <button class="button" type="button" id="btnDarkDicePlus" aria-label="Increase dark dice">
+                          <span class="icon is-small"><i class="fas fa-plus"></i></span>
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -788,7 +831,6 @@
      function showDiceResults(light, dark) {
        if (!diceResults || !diceResultsField) return;
        diceResults.innerHTML = '';
-       // Light dice: blue tags, dark dice: red tags
        light.forEach(function(val) {
          var tag = document.createElement('span');
          tag.className = 'tag is-light is-medium';
