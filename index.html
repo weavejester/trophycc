@@ -820,6 +820,38 @@
      var darkDiceInput = document.getElementById('darkDice');
      var diceResults = document.getElementById('diceResults');
      var diceResultsField = document.getElementById('diceResultsField');
+     var btnLightDiceMinus = document.getElementById('btnLightDiceMinus');
+     var btnLightDicePlus = document.getElementById('btnLightDicePlus');
+     var btnDarkDiceMinus = document.getElementById('btnDarkDiceMinus');
+     var btnDarkDicePlus = document.getElementById('btnDarkDicePlus');
+
+     function clampDice(val) {
+       val = parseInt(val, 10) || 0;
+       if (val < 0) return 0;
+       if (val > 10) return 10;
+       return val;
+     }
+
+     if (btnLightDiceMinus) btnLightDiceMinus.addEventListener('click', function() {
+       if (lightDiceInput) {
+         lightDiceInput.value = clampDice((parseInt(lightDiceInput.value, 10) || 0) - 1);
+       }
+     });
+     if (btnLightDicePlus) btnLightDicePlus.addEventListener('click', function() {
+       if (lightDiceInput) {
+         lightDiceInput.value = clampDice((parseInt(lightDiceInput.value, 10) || 0) + 1);
+       }
+     });
+     if (btnDarkDiceMinus) btnDarkDiceMinus.addEventListener('click', function() {
+       if (darkDiceInput) {
+         darkDiceInput.value = clampDice((parseInt(darkDiceInput.value, 10) || 0) - 1);
+       }
+     });
+     if (btnDarkDicePlus) btnDarkDicePlus.addEventListener('click', function() {
+       if (darkDiceInput) {
+         darkDiceInput.value = clampDice((parseInt(darkDiceInput.value, 10) || 0) + 1);
+       }
+     });
      function rollDice(num) {
        var results = [];
        for (var i = 0; i < num; i++) {
