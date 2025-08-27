@@ -20,6 +20,9 @@
    h1.title strong {
        font-weight: 600;
    }
+   #diceResults .tag.is-light {
+       color: #333;
+   }
   </style>
 </head>
 <body>
@@ -40,13 +43,65 @@
               </button>
             </div>
             <div class="level-item">
+              <button type="button" id="btnRollDice" class="button is-warning is-light" title="Roll dice" aria-label="Roll dice">
+                <span class="icon"><i class="fas fa-dice"></i></span>
+                <span>Roll dice</span>
+              </button>
+            </div>
+            <div class="level-item">
               <button type="button" id="btnRandAll" class="button is-primary" title="Randomise everything" aria-label="Randomise everything">
                 <span class="icon"><i class="fas fa-dice"></i></span>
                 <span>Randomise all</span></button>
             </div>
           </div>
         </nav>
+
       </header>
+
+      <!-- Dice Roll Modal -->
+      <div id="diceModal" class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+          <header class="modal-card-head">
+            <p class="modal-card-title">Roll Dice</p>
+            <button class="delete" aria-label="close" id="btnDiceModalClose"></button>
+          </header>
+          <section class="modal-card-body">
+            <div class="columns">
+              <div class="column">
+                <div class="field">
+                  <label class="label" for="lightDice">Light dice</label>
+                  <div class="control">
+                    <input id="lightDice" class="input" type="number" min="0" max="10" value="0" />
+                  </div>
+                </div>
+              </div>
+              <div class="column">
+                <div class="field">
+                  <label class="label" for="darkDice">Dark dice</label>
+                  <div class="control">
+                    <input id="darkDice" class="input" type="number" min="0" max="10" value="0" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="field" id="diceResultsField">
+              <label class="label">Results</label>
+              <div id="diceResults"></div>
+            </div>
+          </section>
+          <footer class="modal-card-foot">
+            <div class="field is-grouped">
+              <div class="control">
+                <button class="button is-primary" id="btnDiceRoll">Roll</button>
+              </div>
+              <div class="control">
+                <button class="button" id="btnDiceCancel">Close</button>
+              </div>
+            </div>
+          </footer>
+        </div>
+      </div>
 
       <div class="box form-card">
         <form action="#" method="post" novalidate>
@@ -589,7 +644,7 @@
        randomizeSelect(backgroundSelect);
        randomizeSelect(driveSelect);
 
-       // Rituals: pick unique 0–3
+      vscode // Rituals: pick unique 0–3
        clearAllRitualRows();
        var available = getAllRitualValues();
        var count = Math.floor(Math.random() * 4); // 0..3
@@ -714,6 +769,65 @@
 
      // Buttons
      var btnName = document.getElementById('btnRandName');
+     var btnRollDice = document.getElementById('btnRollDice');
+     var diceModal = document.getElementById('diceModal');
+     var btnDiceModalClose = document.getElementById('btnDiceModalClose');
+     var btnDiceCancel = document.getElementById('btnDiceCancel');
+     var lightDiceInput = document.getElementById('lightDice');
+     var darkDiceInput = document.getElementById('darkDice');
+     var diceResults = document.getElementById('diceResults');
+     var diceResultsField = document.getElementById('diceResultsField');
+     function rollDice(num) {
+       var results = [];
+       for (var i = 0; i < num; i++) {
+         results.push(Math.floor(Math.random() * 6) + 1);
+       }
+       return results;
+     }
+
+     function showDiceResults(light, dark) {
+       if (!diceResults || !diceResultsField) return;
+       diceResults.innerHTML = '';
+       // Light dice: blue tags, dark dice: red tags
+       light.forEach(function(val) {
+         var tag = document.createElement('span');
+         tag.className = 'tag is-light is-medium';
+         tag.textContent = val;
+         diceResults.appendChild(tag);
+         diceResults.appendChild(document.createTextNode(' '));
+       });
+       dark.forEach(function(val) {
+         var tag = document.createElement('span');
+         tag.className = 'tag is-dark is-medium';
+         tag.textContent = val;
+         diceResults.appendChild(tag);
+         diceResults.appendChild(document.createTextNode(' '));
+       });
+       diceResultsField.style.display = (light.length || dark.length) ? '' : 'none';
+     }
+
+     var btnDiceRoll = document.getElementById('btnDiceRoll');
+     if (btnDiceRoll) btnDiceRoll.addEventListener('click', function() {
+       var numLight = parseInt(lightDiceInput.value, 10) || 0;
+       var numDark = parseInt(darkDiceInput.value, 10) || 0;
+       var light = rollDice(numLight);
+       var dark = rollDice(numDark);
+       showDiceResults(light, dark);
+     });
+
+     function openDiceModal() {
+       if (diceModal) diceModal.classList.add('is-active');
+       // Clear dice results when opening modal
+       if (diceResults) diceResults.innerHTML = '';
+       if (diceResultsField) diceResultsField.style.display = 'none';
+     }
+     function closeDiceModal() {
+       if (diceModal) diceModal.classList.remove('is-active');
+     }
+
+  if (btnRollDice) btnRollDice.addEventListener('click', openDiceModal);
+     if (btnDiceModalClose) btnDiceModalClose.addEventListener('click', closeDiceModal);
+     if (btnDiceCancel) btnDiceCancel.addEventListener('click', closeDiceModal);
      var btnPron = document.getElementById('btnRandPronouns');
      var btnOcc = document.getElementById('btnRandOccupation');
      var btnBg = document.getElementById('btnRandBackground');
