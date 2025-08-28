@@ -34,6 +34,8 @@
    input[type="number"] {
        -moz-appearance: textfield;
    }
+
+   #diceResults { min-height: 32px; }
   </style>
 </head>
 <body>
@@ -75,7 +77,7 @@
         <div class="modal-card">
           <header class="modal-card-head">
             <p class="modal-card-title">Roll Dice</p>
-            <button class="delete" aria-label="close" id="btnDiceModalClose"></button>
+            <button class="delete is-large has-background-danger" aria-label="close" id="btnDiceModalClose"></button>
           </header>
           <section class="modal-card-body">
             <div class="columns">
@@ -127,22 +129,18 @@
                   </div>
                 </div>
               </div>
+              <div class="column is-narrow">
+                <div class="control">
+                  <button class="button is-primary" id="btnDiceRoll">Roll</button>
+                </div>
+              </div>
             </div>
-            <div class="field" id="diceResultsField">
-              <label class="label">Results</label>
-              <div id="diceResults"></div>
+            <div class="field " id="diceResultsField">
+              <div class="field">
+                <div id="diceResults"></div>
+              </div>
             </div>
           </section>
-          <footer class="modal-card-foot">
-            <div class="field is-grouped">
-              <div class="control">
-                <button class="button is-primary" id="btnDiceRoll">Roll</button>
-              </div>
-              <div class="control">
-                <button class="button" id="btnDiceCancel">Close</button>
-              </div>
-            </div>
-          </footer>
         </div>
       </div>
 
@@ -877,7 +875,6 @@
          diceResults.appendChild(tag);
          diceResults.appendChild(document.createTextNode(' '));
        });
-       diceResultsField.style.display = (light.length || dark.length) ? '' : 'none';
      }
 
      var btnDiceRoll = document.getElementById('btnDiceRoll');
@@ -893,7 +890,6 @@
        if (diceModal) diceModal.classList.add('is-active');
        // Clear dice results when opening modal
        if (diceResults) diceResults.innerHTML = '';
-       if (diceResultsField) diceResultsField.style.display = 'none';
      }
      function closeDiceModal() {
        if (diceModal) diceModal.classList.remove('is-active');
