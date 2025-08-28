@@ -519,6 +519,24 @@
                   <span id="startingRuinValue" class="tag is-dark is-medium" aria-live="polite" aria-atomic="true">1</span>
                 </div>
               </div>
+              <div class="column">
+                <label class="label" for="currentRuin">Current ruin</label>
+                <div class="field has-addons" style="max-width: 220px;">
+                  <div class="control">
+                    <button class="button" type="button" id="btnRuinMinus" aria-label="Decrease ruin">
+                      <span class="icon is-small"><i class="fas fa-minus"></i></span>
+                    </button>
+                  </div>
+                  <div class="control is-narrow">
+                    <input id="currentRuin" class="input" type="number" min="1" max="6" value="1" style="text-align:center;" />
+                  </div>
+                  <div class="control">
+                    <button class="button" type="button" id="btnRuinPlus" aria-label="Increase ruin">
+                      <span class="icon is-small"><i class="fas fa-plus"></i></span>
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
           </fieldset>
         </form>
@@ -825,11 +843,20 @@
      var btnLightDicePlus = document.getElementById('btnLightDicePlus');
      var btnDarkDiceMinus = document.getElementById('btnDarkDiceMinus');
      var btnDarkDicePlus = document.getElementById('btnDarkDicePlus');
+     var btnRuinMinus = document.getElementById('btnRuinMinus');
+     var btnRuinPlus = document.getElementById('btnRuinPlus');
+     var currentRuinInput = document.getElementById('currentRuin');
 
      function clampDice(val) {
        val = parseInt(val, 10) || 0;
        if (val < 0) return 0;
        if (val > 10) return 10;
+       return val;
+     }
+     function clampRuin(val) {
+       val = parseInt(val, 9) || 1;
+       if (val < 0) return 1;
+       if (val > 5) return 6;
        return val;
      }
 
@@ -851,6 +878,16 @@
      if (btnDarkDicePlus) btnDarkDicePlus.addEventListener('click', function() {
        if (darkDiceInput) {
          darkDiceInput.value = clampDice((parseInt(darkDiceInput.value, 10) || 0) + 1);
+       }
+     });
+     if (btnRuinMinus) btnRuinMinus.addEventListener('click', function() {
+       if (currentRuinInput) {
+         currentRuinInput.value = clampRuin((parseInt(currentRuinInput.value, 10) || 1) - 1);
+       }
+     });
+     if (btnRuinPlus) btnRuinPlus.addEventListener('click', function() {
+       if (currentRuinInput) {
+         currentRuinInput.value = clampRuin((parseInt(currentRuinInput.value, 10) || 1) + 1);
        }
      });
      function rollDice(num) {
