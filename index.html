@@ -38,10 +38,22 @@
 
    #diceResults { min-height: 32px; }
    #diceResults .tag { margin: 0 3px; }
-   #diceResults .tag.is-highest { box-shadow: 0 0 0 3px #ffb70f; }
+
+   #diceResults .tag.is-highest.dice-fail { box-shadow: 0 0 0 3px #b71c1c; }
+   #diceResults .tag.is-highest.dice-partial { box-shadow: 0 0 0 3px #fbc02d; }
+   #diceResults .tag.is-highest.dice-success { box-shadow: 0 0 0 3px #388e3c; }
+
+   #diceResultMessage {
+       min-height: 24px;
+       margin-top: 0.5em;
+       font-weight: bold;
+   }
+   #diceResultMessage.dice-fail { color: #b71c1c; }
+   #diceResultMessage.dice-partial { color: #fbc02d; }
+   #diceResultMessage.dice-success { color: #388e3c; }
 
    .starting-ruin {
-     margin: 0.2em 0.5em 0 1em;
+       margin: 0.2em 0.5em 0 1em;
    }
   </style>
 </head>
@@ -145,6 +157,7 @@
             <div class="field " id="diceResultsField">
               <div class="field">
                 <div id="diceResults"></div>
+                <div id="diceResultMessage"></div>
               </div>
             </div>
           </section>
@@ -845,6 +858,7 @@
      var darkDiceInput = document.getElementById('darkDice');
      var diceResults = document.getElementById('diceResults');
      var diceResultsField = document.getElementById('diceResultsField');
+     var diceResultMsg = document.getElementById('diceResultMessage');
      var btnLightDiceMinus = document.getElementById('btnLightDiceMinus');
      var btnLightDicePlus = document.getElementById('btnLightDicePlus');
      var btnDarkDiceMinus = document.getElementById('btnDarkDiceMinus');
@@ -920,6 +934,25 @@
       highlightType = 'light';
       highlightIndex = light.indexOf(max);
       }
+      var resultClass = '';
+      // Set result message
+      if (diceResultMsg) {
+        if (max >= 1 && max <= 3) {
+          resultClass = 'dice-fail'
+          diceResultMsg.textContent = 'fail';
+          diceResultMsg.className = resultClass;
+        } else if (max >= 4 && max <= 5) {
+          resultClass = 'dice-partial'
+          diceResultMsg.textContent = 'partial success';
+          diceResultMsg.className = resultClass;
+        } else if (max === 6) {
+          resultClass = 'dice-success'
+          diceResultMsg.textContent = 'full success';
+          diceResultMsg.className = resultClass;
+        } else {
+          diceResultMsg.textContent = '';
+        }
+      }
       // Render tags
       light.forEach(function(val, i) {
         var tag = document.createElement('span');
@@ -927,6 +960,7 @@
         tag.textContent = val;
         if (highlightType === 'light' && i === highlightIndex) {
           tag.classList.add('is-highest');
+          tag.classList.add(resultClass);
         }
         diceResults.appendChild(tag);
         diceResults.appendChild(document.createTextNode(' '));
@@ -937,6 +971,7 @@
         tag.textContent = val;
         if (highlightType === 'dark' && i === highlightIndex) {
           tag.classList.add('is-highest');
+          tag.classList.add(resultClass);
         }
         diceResults.appendChild(tag);
         diceResults.appendChild(document.createTextNode(' '));
@@ -961,7 +996,10 @@
      function openDiceModal() {
        if (diceModal) diceModal.classList.add('is-active');
        // Clear dice results when opening modal
-       if (diceResults) diceResults.innerHTML = '';
+       if (diceResults) {
+         diceResults.innerHTML = '';
+         diceResultMsg.innerHTML = '';
+       }
      }
      function closeDiceModal() {
        if (diceModal) diceModal.classList.remove('is-active');
