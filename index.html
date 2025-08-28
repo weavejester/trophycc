@@ -39,6 +39,10 @@
    #diceResults { min-height: 32px; }
    #diceResults .tag { margin: 0 3px; }
    #diceResults .tag.is-highest { box-shadow: 0 0 0 3px #ffb70f; }
+
+   .starting-ruin {
+     margin: 0.2em 0.5em 0 1em;
+   }
   </style>
 </head>
 <body>
@@ -514,26 +518,26 @@
             <!-- Starting Ruin (auto) -->
             <div class="columns">
               <div class="column">
-                <label class="label" for="startingRuinValue">Starting Ruin (1 + rituals)</label>
-                <div class="control">
-                  <span id="startingRuinValue" class="tag is-dark is-medium" aria-live="polite" aria-atomic="true">1</span>
-                </div>
-              </div>
-              <div class="column">
-                <label class="label" for="currentRuin">Current ruin</label>
-                <div class="field has-addons" style="max-width: 220px;">
-                  <div class="control">
-                    <button class="button" type="button" id="btnRuinMinus" aria-label="Decrease ruin">
-                      <span class="icon is-small"><i class="fas fa-minus"></i></span>
-                    </button>
+                <label class="label" for="currentRuin">Ruin</label>
+                <div class="field is-horizontal">
+                  <div class="field has-addons" style="max-width: 220px;">
+                    <div class="control">
+                      <button class="button" type="button" id="btnRuinMinus" aria-label="Decrease ruin">
+                        <span class="icon is-small"><i class="fas fa-minus"></i></span>
+                      </button>
+                    </div>
+                    <div class="control is-narrow">
+                      <input id="currentRuin" class="input" type="number" min="1" max="6" value="1" style="text-align:center;" />
+                    </div>
+                    <div class="control">
+                      <button class="button" type="button" id="btnRuinPlus" aria-label="Increase ruin">
+                        <span class="icon is-small"><i class="fas fa-plus"></i></span>
+                      </button>
+                    </div>
                   </div>
-                  <div class="control is-narrow">
-                    <input id="currentRuin" class="input" type="number" min="1" max="6" value="1" style="text-align:center;" />
-                  </div>
-                  <div class="control">
-                    <button class="button" type="button" id="btnRuinPlus" aria-label="Increase ruin">
-                      <span class="icon is-small"><i class="fas fa-plus"></i></span>
-                    </button>
+                  <div class="control starting-ruin">
+                    <span>Starting ruin:</span>
+                    <span id="startingRuinValue" class="tag is-dark is-medium" aria-live="polite" aria-atomic="true">1</span>
                   </div>
                 </div>
               </div>
@@ -626,10 +630,12 @@
      var ritualsAddLink = document.getElementById('ritualsAddLink');
      var MAX_RITUALS = 3;
 
+     var currentRuinInput = document.getElementById('currentRuin');
      var startingRuinEl = document.getElementById('startingRuinValue');
      function updateStartingRuin(){
        var count = ritualsRows ? ritualsRows.children.length : 0;
        startingRuinEl.textContent = String(1 + count);
+       currentRuinInput.value = String(1 + count);
      }
 
      function updateRitualAddState(){
@@ -845,7 +851,6 @@
      var btnDarkDicePlus = document.getElementById('btnDarkDicePlus');
      var btnRuinMinus = document.getElementById('btnRuinMinus');
      var btnRuinPlus = document.getElementById('btnRuinPlus');
-     var currentRuinInput = document.getElementById('currentRuin');
 
      function clampDice(val) {
        val = parseInt(val, 10) || 0;
