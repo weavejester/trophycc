@@ -36,6 +36,8 @@
    }
 
    #diceResults { min-height: 32px; }
+   #diceResults .tag { margin: 0 3px; }
+   #diceResults .tag.is-highest { box-shadow: 0 0 0 3px #ffb70f; }
   </style>
 </head>
 <body>
@@ -858,24 +860,45 @@
        return results;
      }
 
-     function showDiceResults(light, dark) {
-       if (!diceResults || !diceResultsField) return;
-       diceResults.innerHTML = '';
-       light.forEach(function(val) {
-         var tag = document.createElement('span');
-         tag.className = 'tag is-light is-medium';
-         tag.textContent = val;
-         diceResults.appendChild(tag);
-         diceResults.appendChild(document.createTextNode(' '));
-       });
-       dark.forEach(function(val) {
-         var tag = document.createElement('span');
-         tag.className = 'tag is-dark is-medium';
-         tag.textContent = val;
-         diceResults.appendChild(tag);
-         diceResults.appendChild(document.createTextNode(' '));
-       });
-     }
+    function showDiceResults(light, dark) {
+      if (!diceResults || !diceResultsField) return;
+      diceResults.innerHTML = '';
+      // Find the highest value and which die to highlight
+      var maxLight = light.length ? Math.max.apply(null, light) : -Infinity;
+      var maxDark = dark.length ? Math.max.apply(null, dark) : -Infinity;
+      var max = Math.max(maxLight, maxDark);
+      var highlightType = null; // 'light' or 'dark'
+      var highlightIndex = -1;
+      if (maxDark >= maxLight && maxDark !== -Infinity) {
+      // Dark wins ties or is highest
+      highlightType = 'dark';
+      highlightIndex = dark.indexOf(max);
+      } else if (maxLight > maxDark && maxLight !== -Infinity) {
+      highlightType = 'light';
+      highlightIndex = light.indexOf(max);
+      }
+      // Render tags
+      light.forEach(function(val, i) {
+        var tag = document.createElement('span');
+        tag.className = 'tag is-light is-medium';
+        tag.textContent = val;
+        if (highlightType === 'light' && i === highlightIndex) {
+          tag.classList.add('is-highest');
+        }
+        diceResults.appendChild(tag);
+        diceResults.appendChild(document.createTextNode(' '));
+      });
+      dark.forEach(function(val, i) {
+        var tag = document.createElement('span');
+        tag.className = 'tag is-dark is-medium';
+        tag.textContent = val;
+        if (highlightType === 'dark' && i === highlightIndex) {
+          tag.classList.add('is-highest');
+        }
+        diceResults.appendChild(tag);
+        diceResults.appendChild(document.createTextNode(' '));
+      });
+    }
 
      var btnDiceRoll = document.getElementById('btnDiceRoll');
      if (btnDiceRoll) btnDiceRoll.addEventListener('click', function() {
