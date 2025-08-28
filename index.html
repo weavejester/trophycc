@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+  <link rel="preload" as="audio" href="diceroll.mp3" type="audio/mpeg">
   <style>
    html { background: #222; }
    .has-background-danger { background: hsl(347.6, 88.5%, 37.5%) !important }
@@ -901,7 +902,13 @@
     }
 
      var btnDiceRoll = document.getElementById('btnDiceRoll');
+     var diceRollAudio = new Audio('diceroll.mp3');
+     diceRollAudio.preload = 'auto';
      if (btnDiceRoll) btnDiceRoll.addEventListener('click', function() {
+       if (diceRollAudio) {
+         try { diceRollAudio.currentTime = 0; } catch (e) {}
+         diceRollAudio.play();
+       }
        var numLight = parseInt(lightDiceInput.value, 10) || 0;
        var numDark = parseInt(darkDiceInput.value, 10) || 0;
        var light = rollDice(numLight);
